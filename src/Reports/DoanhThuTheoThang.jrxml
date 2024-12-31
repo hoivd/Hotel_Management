@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DoanhThuTheoThang" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="947a2cf5-3e73-4895-a9e5-6237c2c173e3">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="148"/>
+	<parameter name="thang" class="java.math.BigDecimal">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="nam" class="java.math.BigDecimal">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select * from thanhtoan tt, phieudatphong pdp where tt.madatphong = pdp.madatphong and extract(year from ngaylap) = $P{nam} and extract(month from ngaylap) = $P{thang}]]>
+	</queryString>
+	<field name="MATHANHTOAN" class="java.math.BigDecimal"/>
+	<field name="MADATPHONG" class="java.math.BigDecimal"/>
+	<field name="MANV" class="java.math.BigDecimal"/>
+	<field name="THANHTIEN" class="java.math.BigDecimal"/>
+	<field name="HINHTHUCTHANHTOAN" class="java.lang.String"/>
+	<field name="NGAYLAP" class="java.sql.Timestamp"/>
+	<field name="TIENKHACHDUA" class="java.math.BigDecimal"/>
+	<field name="MAKH" class="java.math.BigDecimal"/>
+	<field name="NGAYDAT" class="java.sql.Timestamp"/>
+	<field name="NGAYNHAN" class="java.sql.Timestamp"/>
+	<field name="NGAYTRA" class="java.sql.Timestamp"/>
+	<field name="TTNHANPHONG" class="java.math.BigDecimal"/>
+	<field name="TIENPHONG" class="java.math.BigDecimal"/>
+	<field name="PHUPHI" class="java.math.BigDecimal"/>
+	<field name="TIENTRATRUOC" class="java.math.BigDecimal"/>
+	<field name="TIENCANTRA" class="java.math.BigDecimal"/>
+	<field name="TIENDV" class="java.math.BigDecimal"/>
+	<variable name="MADATPHONG_1" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{MADATPHONG}]]></variableExpression>
+	</variable>
+	<variable name="TIENPHONG_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{TIENPHONG}]]></variableExpression>
+	</variable>
+	<variable name="THANHTIEN_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{THANHTIEN}]]></variableExpression>
+	</variable>
+	<variable name="THANHTIEN_2" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{THANHTIEN}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="250" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="66" backcolor="#660066" uuid="660fd288-5204-4b59-8736-6d8d3ceb24e1"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="43" y="0" width="466" height="66" forecolor="#FFFF00" uuid="302a297f-b9b2-4a14-ab33-522c5e949885"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[THỐNG KÊ DOANH THU THEO THÁNG]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="124" width="555" height="126" backcolor="#660066" uuid="27f6c234-a4e2-41f8-97ae-5d6a6b3cc3f4"/>
+			</rectangle>
+			<line>
+				<reportElement x="0" y="96" width="555" height="1" uuid="40881277-689d-41c8-8097-7a9862ce4505"/>
+			</line>
+			<staticText>
+				<reportElement x="31" y="153" width="108" height="20" forecolor="#FFFF00" uuid="c84c14de-8d16-42fb-81e9-0adff1e0c5b3"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tháng thống kê: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="139" y="153" width="62" height="20" forecolor="#FFFF00" uuid="a8254459-2e59-474a-a00c-507b10df38d6"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{thang}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="31" y="192" width="58" height="20" forecolor="#FFFF00" uuid="8b6807ca-f044-45b3-b985-93bfcec2ad30"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ngày in:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="89" y="192" width="112" height="20" forecolor="#FFFF00" uuid="3bfdc883-1c81-4b68-9223-c9ff22731907"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="356" y="153" width="42" height="20" forecolor="#FFFF00" uuid="8f8857c2-850f-4bc8-a95c-2ba567910f3c"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Năm:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="398" y="153" width="85" height="20" forecolor="#FFFF00" uuid="a6e83d4f-efa3-43b4-bd9c-0571670052fc"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nam}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="356" y="192" width="111" height="20" forecolor="#FFFF00" backcolor="#FF0000" uuid="562d91b7-56dd-4d4b-a31a-69d3e115636e"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tổng doanh thu:]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="467" y="192" width="88" height="20" forecolor="#FFFF00" uuid="a577922e-84cf-45f6-8de3-f01dcd160086"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{THANHTIEN_2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="91">
+			<line>
+				<reportElement x="0" y="15" width="555" height="1" uuid="402d92d7-0ec0-4d8d-ba22-191d93da9371"/>
+			</line>
+			<staticText>
+				<reportElement x="19" y="30" width="157" height="20" uuid="59fdae01-cb82-4175-9c42-c0b6bffe005f"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Doanh thu từ đặt phòng:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="59" width="555" height="32" forecolor="#000066" backcolor="#660066" uuid="f9bb56d2-a424-439f-bea7-ddd2849f8ab4"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="43" y="71" width="133" height="20" forecolor="#FFFF00" backcolor="#FFFFFF" uuid="461f2bec-f0da-4778-b605-9a4d1e61039e"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mã đặt phòng]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="217" y="71" width="133" height="20" forecolor="#FFFF00" backcolor="#FFFFFF" uuid="def76939-6d8b-48a1-aaad-569f64d33d43"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Phụ phí]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="393" y="71" width="133" height="20" forecolor="#FFFF00" backcolor="#FFFFFF" uuid="bcd25f60-c79e-4303-8392-772cd2438353"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tiền phòng]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="44">
+			<rectangle>
+				<reportElement x="0" y="10" width="555" height="32" forecolor="#000000" backcolor="#CCFFFF" uuid="2629d7f5-c3f8-4886-b888-bb236b451f6a"/>
+			</rectangle>
+			<textField>
+				<reportElement x="43" y="24" width="70" height="20" uuid="47b263b4-6079-490a-83c7-f1b8495ceecf"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MADATPHONG}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="217" y="22" width="77" height="20" uuid="f8548565-c1df-44ce-88ec-e1de8c88271e"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PHUPHI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="393" y="22" width="90" height="20" uuid="0930d02a-74ac-4c23-ad47-62446d58a697"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TIENPHONG}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="27" splitType="Stretch">
+			<textField>
+				<reportElement x="455" y="7" width="100" height="20" uuid="f058187f-7ffa-43f5-9534-3463918a1ce3"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="147" splitType="Immediate">
+			<subreport>
+				<reportElement x="0" y="33" width="555" height="100" uuid="d8e1ea9a-a208-4bd5-b6ec-94bb0854e280"/>
+				<subreportParameter name="nam">
+					<subreportParameterExpression><![CDATA[$P{nam}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="thang">
+					<subreportParameterExpression><![CDATA[$P{thang}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["..\\Reports\\subreportThongKeTheoThang_DV.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement x="259" y="13" width="80" height="20" forecolor="#FF0000" backcolor="#FF0000" uuid="5d2c19e6-7325-48e7-8cc7-2cc5cdf14d1c"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Số hóa đơn:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="382" y="13" width="101" height="20" forecolor="#FF0000" backcolor="#FF0000" uuid="bbc61853-b829-4fea-8cb0-d75122470df9"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Tổng tiền phòng:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="339" y="13" width="43" height="20" forecolor="#FF0000" backcolor="#FFFFFF" uuid="25a8a1d8-cbd7-4341-93be-0d2e6a9c7efe"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{MADATPHONG_1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="483" y="13" width="72" height="20" forecolor="#FF0000" backcolor="#FFFFFF" uuid="e83e214c-60be-4a0d-8c4e-af0845807120"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TIENPHONG_1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

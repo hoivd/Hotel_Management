@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ThongKeSoLuongDatPhong" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0ce3fc47-3d81-40e4-81c4-551758250981">
+	<property name="ireport.zoom" value="1.3310000000000006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="64"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\KIET\\Documents\\NetBeansProjects\\Hotel-Manegement-Project\\src\\Reports\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select lp.maloaiphg, lp.mota, lp.dongia
+from phong p, chitietdatphong ct, loaiphong lp
+where p.maphg= ct.maphg and p.maloaiphg= lp.maloaiphg]]>
+	</queryString>
+	<field name="MALOAIPHG" class="java.lang.String"/>
+	<field name="MOTA" class="java.lang.String"/>
+	<field name="DONGIA" class="java.math.BigDecimal"/>
+	<sortField name="MALOAIPHG"/>
+	<variable name="MALOAIPHG_1" class="java.lang.Integer" resetType="Group" resetGroup="MALP_GROUPING" calculation="Count">
+		<variableExpression><![CDATA[$F{MALOAIPHG}]]></variableExpression>
+	</variable>
+	<group name="MALP_GROUPING">
+		<groupExpression><![CDATA[$F{MALOAIPHG}]]></groupExpression>
+		<groupHeader>
+			<band height="36">
+				<rectangle>
+					<reportElement x="0" y="10" width="555" height="23" forecolor="#CCCCFF" backcolor="#CCFFFF" uuid="0ff81189-6a51-4918-ab57-984ca4eead82"/>
+				</rectangle>
+				<textField>
+					<reportElement x="32" y="13" width="82" height="20" uuid="84c02275-4b18-45ed-b7ce-097cd7f25afe"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{MALOAIPHG}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="129" y="13" width="198" height="20" uuid="a6da48b1-ad8a-46aa-8be2-992cdfdecf59"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{MOTA}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="357" y="13" width="76" height="20" uuid="0b2df4a9-7d31-46f7-a491-4a513c80a392"/>
+					<textElement textAlignment="Right">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{DONGIA}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="MALP_GROUPING">
+					<reportElement x="460" y="10" width="47" height="20" uuid="3567a540-d956-45b1-84af-6ce1e509fe05"/>
+					<textElement textAlignment="Right">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{MALOAIPHG_1}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="67" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="67" backcolor="#660066" uuid="3c86da8e-3385-4338-a7ec-f5244f356be1"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="43" y="0" width="464" height="67" forecolor="#FFFF00" uuid="0e759feb-f569-45af-ad7e-9ad9ce75d140"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="26" isBold="true"/>
+				</textElement>
+				<text><![CDATA[THỐNG KÊ SỐ LƯỢNG ĐẶT PHÒNG]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="34">
+			<staticText>
+				<reportElement x="357" y="11" width="88" height="20" uuid="2875c164-490f-4241-aff9-43f616b2a71a"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Ngày thống kê:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="445" y="11" width="112" height="20" uuid="ccbc9934-0788-4473-83a3-ba9b540662ff"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="86">
+			<rectangle>
+				<reportElement x="0" y="59" width="555" height="27" forecolor="#6600CC" backcolor="#660066" uuid="6f567841-98d0-4e2c-b53d-f502235f2d09"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="14" y="66" width="100" height="20" forecolor="#FFFF00" uuid="4c1f5212-d2bb-4a1e-a148-b582de95b0c8"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mã loại phòng]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="129" y="66" width="198" height="20" forecolor="#FFFF00" uuid="334f2b60-5dd7-47fc-a733-cd0b0116f675"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mô tả]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="357" y="66" width="76" height="20" forecolor="#FFFF00" uuid="50d633da-4427-4037-8554-95768f617eec"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Đơn giá]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="460" y="66" width="85" height="20" forecolor="#FFFF00" uuid="e73a3618-d349-4cd5-a1ce-eeb4d2bc46cc"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Số lần đặt]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="13" width="555" height="1" uuid="9c380f81-8cc8-4edd-881d-9531be4ca3b9"/>
+			</line>
+			<staticText>
+				<reportElement x="114" y="14" width="370" height="33" uuid="18d2ff28-598e-4080-9b88-a9e2f0134330"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="20" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Số lượng đặt của các loại phòng]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<lastPageFooter>
+		<band height="33">
+			<textField>
+				<reportElement x="455" y="17" width="100" height="16" uuid="d2aade30-5e2d-4239-80b7-8c3c62b7c966"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</lastPageFooter>
+	<summary>
+		<band height="86">
+			<subreport>
+				<reportElement x="0" y="22" width="555" height="64" uuid="8d5fa1ef-bdec-4dc5-a47f-fb5bdd2500dc"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["../Reports/SoLanDatPhongCuaKH.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SoLanDatPhongCuaKHReport" pageWidth="555" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="dde4c0f5-dfac-4638-b160-9e9463ef4d93">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="dataset1" uuid="b0c3bc44-500c-4066-8c9c-f51a605b498f"/>
+	<queryString>
+		<![CDATA[SELECT KH.MAKH, TENKH, MADATPHONG, TIENPHONG
+FROM KHACHHANG KH JOIN PHIEUDATPHONG P
+ ON KH.MAKH = P.MAKH]]>
+	</queryString>
+	<field name="MAKH" class="java.math.BigDecimal"/>
+	<field name="TENKH" class="java.lang.String"/>
+	<field name="MADATPHONG" class="java.math.BigDecimal"/>
+	<field name="TIENPHONG" class="java.math.BigDecimal"/>
+	<variable name="MADATPHONG_1" class="java.lang.Integer" resetType="Group" resetGroup="MAKH_GROUPING" calculation="Count">
+		<variableExpression><![CDATA[$F{MADATPHONG}]]></variableExpression>
+	</variable>
+	<group name="MAKH_GROUPING">
+		<groupExpression><![CDATA[$F{MAKH}]]></groupExpression>
+		<groupHeader>
+			<band height="36">
+				<rectangle>
+					<reportElement x="0" y="11" width="555" height="25" forecolor="#CCCCFF" backcolor="#CCFFFF" uuid="dc4d54c0-91e4-4e8a-9855-327e135e7a5f"/>
+				</rectangle>
+				<textField>
+					<reportElement mode="Transparent" x="217" y="16" width="114" height="20" uuid="1acdb26d-10f6-49f4-a0e3-8021f270a4a6"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{TENKH}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="34" y="16" width="59" height="20" uuid="5b763fb8-75f6-4b5c-a4de-7840b7584ff6"/>
+					<textElement textAlignment="Right" verticalAlignment="Top">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{MAKH}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="MAKH_GROUPING">
+					<reportElement x="402" y="16" width="61" height="20" uuid="a8664ce1-2876-45f2-b33f-6a717473f110"/>
+					<textElement textAlignment="Right">
+						<font fontName="Times New Roman" size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{MADATPHONG_1}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="81" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="56" width="555" height="25" forecolor="#6600CC" backcolor="#660066" uuid="8bd2e638-79c5-4156-b411-80ca0acbda32"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="34" y="61" width="110" height="20" forecolor="#FFFF00" uuid="8956af1c-8c74-4df6-a93e-64a1cfa573b1"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mã khách hàng]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="217" y="61" width="114" height="20" forecolor="#FFFF00" uuid="87f71bb0-a0ee-4415-a666-701b6fea6d9e"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tên khách hàng]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="402" y="61" width="125" height="20" forecolor="#FFFF00" uuid="7c930064-af36-4c97-a31e-05d24e4e6983"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Số lần đặt phòng]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="17" width="555" height="1" uuid="0fa9c991-7760-436a-be6d-17a9f28da9eb"/>
+			</line>
+			<staticText>
+				<reportElement x="116" y="17" width="347" height="39" uuid="6c73414b-b136-460d-9aca-4e47a47c5f31"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="20" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Số lần đặt phòng của mỗi khách hàng]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+</jasperReport>
