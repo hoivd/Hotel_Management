@@ -17,11 +17,12 @@ public class KieuKhachDAO {
     Connection con = DataBaseConnection.getConnection();
     
     public boolean ThemKieuKhach(KieuKhach KK){
-        String sql = "INSERT INTO LOAIKHACH(MALOAIKHACH, TENLOAIKHACH) VALUES(?,?)";
+        String sql = "INSERT INTO LOAIKHACH(MALOAIKHACH, TENLOAIKHACH, TYLEPHUTHU) VALUES(?,?,?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, KK.getMaLoaiKhach());
             ps.setString(2, KK.getLoaiKhach());
+            ps.setString(3, KK.getTyLePhuThu());
             return ps.executeUpdate() > 0;
         } catch (Exception e) {
             e.printStackTrace();
@@ -42,12 +43,13 @@ public class KieuKhachDAO {
     }
     
     public boolean SuaKieuKhach(KieuKhach KKCu, KieuKhach KKMoi){
-        String sql = "UPDATE LOAIKHACH SET MALOAIKHACH = ?, TENLOAIKHACH = ? WHERE MALOAIKHACH = ?";
+        String sql = "UPDATE LOAIKHACH SET MALOAIKHACH = ?, TENLOAIKHACH = ?, TYLEPHUTHU = ? WHERE MALOAIKHACH = ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, KKMoi.getMaLoaiKhach());
             ps.setString(2, KKMoi.getLoaiKhach());
-            ps.setString(3, KKCu.getMaLoaiKhach());
+            ps.setString(3, KKMoi.getTyLePhuThu());
+            ps.setString(4, KKCu.getMaLoaiKhach());
             return ps.executeUpdate() > 0;
         } catch (Exception e) {
             e.printStackTrace();
@@ -57,7 +59,7 @@ public class KieuKhachDAO {
     
     public ArrayList<KieuKhach> getListKieuKhach(){
         ArrayList<KieuKhach> listKieuKhach = new ArrayList<>();
-        String sql = "SELECT MALOAIKHACH, TENLOAIKHACH FROM LOAIKHACH";
+        String sql = "SELECT MALOAIKHACH, TENLOAIKHACH, TYLEPHUTHU FROM LOAIKHACH";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -65,6 +67,7 @@ public class KieuKhachDAO {
                 KieuKhach KK = new KieuKhach();
                 KK.setMaLoaiKhach(rs.getString("MALOAIKHACH"));
                 KK.setLoaiKhach(rs.getString("TENLOAIKHACH"));
+                KK.setTyLePhuThu(rs.getString("TYLEPHUTHU"));
                 listKieuKhach.add(KK);
             }
         } catch (Exception e) {
