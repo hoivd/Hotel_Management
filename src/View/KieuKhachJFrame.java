@@ -30,7 +30,7 @@ public class KieuKhachJFrame extends javax.swing.JFrame {
         initComponents();
         listKieuKhach = new KieuKhachDAO().getListKieuKhach();
         tblKieuKhach = (DefaultTableModel) Table_KieuKhach.getModel();
-        tblKieuKhach.setColumnIdentifiers(new Object[]{"STT","Mã loại phòng", "Kiểu phòng"});
+        tblKieuKhach.setColumnIdentifiers(new Object[]{"STT", "Mã loại khách", "Tên loại khách", "Tỷ lệ phụ thu"});
         showTableChiTietDV();
         Button_SuaKieuKhach.setEnabled(false);
         Button_XoaKieuKhach.setEnabled(false);
@@ -62,6 +62,8 @@ public class KieuKhachJFrame extends javax.swing.JFrame {
         Button_XoaKieuKhach = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         Text_MaLoaiKhach = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        Text_TyLePhuThu = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         Table_KieuKhach = new javax.swing.JTable();
 
@@ -144,40 +146,55 @@ public class KieuKhachJFrame extends javax.swing.JFrame {
 
         Text_MaLoaiKhach.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setText("Tỷ lệ phụ thu");
+
+        Text_TyLePhuThu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Text_TyLePhuThu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Text_TyLePhuThuActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(Text_MaLoaiKhach, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
-                    .addComponent(Text_LoaiKhach))
-                .addGap(18, 18, 18)
+                    .addComponent(Text_LoaiKhach)
+                    .addComponent(Text_TyLePhuThu))
+                .addGap(25, 25, 25)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(7, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(31, 31, 31)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(Text_MaLoaiKhach, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(Text_LoaiKhach, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(55, Short.MAX_VALUE))
+                            .addComponent(Text_LoaiKhach, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(Text_TyLePhuThu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         Table_KieuKhach.setModel(new javax.swing.table.DefaultTableModel(
@@ -185,7 +202,7 @@ public class KieuKhachJFrame extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã loại khách", "Loại khách"
+                "STT", "Mã loại khách", "Loại khách", "Tỷ lệ phụ thu"
             }
         ));
         Table_KieuKhach.setShowHorizontalLines(true);
@@ -204,7 +221,7 @@ public class KieuKhachJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 528, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -223,7 +240,7 @@ public class KieuKhachJFrame extends javax.swing.JFrame {
         int i = 1;
         ArrayList<KieuKhach> listKieuKhach = new KieuKhachDAO().getListKieuKhach();
         for(KieuKhach KK : listKieuKhach){
-            tblKieuKhach.addRow(new Object[]{i++, KK.getMaLoaiKhach(), KK.getLoaiKhach()});
+            tblKieuKhach.addRow(new Object[]{i++, KK.getMaLoaiKhach(), KK.getLoaiKhach(), KK.getTyLePhuThu()});
         }
     }
     
@@ -233,10 +250,11 @@ public class KieuKhachJFrame extends javax.swing.JFrame {
     }
     
     private void Button_ThemKieuKhachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_ThemKieuKhachActionPerformed
-        if(new KieuKhachController().KtraJtextKieuKhach(Text_MaLoaiKhach, Text_LoaiKhach)){
+        if(new KieuKhachController().KtraJtextKieuKhach(Text_MaLoaiKhach, Text_LoaiKhach, Text_TyLePhuThu)){
             KieuKhach KK = new KieuKhach();
             KK.setMaLoaiKhach(Text_MaLoaiKhach.getText());
             KK.setLoaiKhach(Text_LoaiKhach.getText());
+            KK.setTyLePhuThu(Text_TyLePhuThu.getText());
             if(new KieuKhachDAO().ThemKieuKhach(KK)){
                 JOptionPane.showMessageDialog(this, "Thêm thành công");
                 listKieuKhach.add(KK);
@@ -251,21 +269,23 @@ public class KieuKhachJFrame extends javax.swing.JFrame {
     public KieuKhach returnTTKieuKhach(int index){
         String MaLoaiKhach = tblKieuKhach.getValueAt(index, 1).toString();
         String LoaiKhach = tblKieuKhach.getValueAt(index, 2).toString();
-        return new KieuKhach(MaLoaiKhach,LoaiKhach);
+        String TyLePhuThu = tblKieuKhach.getValueAt(index, 3).toString();
+        return new KieuKhach(MaLoaiKhach,LoaiKhach,TyLePhuThu);
     }
     
     private void Button_SuaKieuKhachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_SuaKieuKhachActionPerformed
 
-        if(new KieuKhachController().KtraJtextKieuKhach(Text_MaLoaiKhach, Text_LoaiKhach)){
+        if(new KieuKhachController().KtraJtextKieuKhach(Text_MaLoaiKhach, Text_LoaiKhach, Text_TyLePhuThu)){
             int indexTB = Table_KieuKhach.getSelectedRow();
             KieuKhach KKCu = returnTTKieuKhach(indexTB);
             int ret = JOptionPane.showConfirmDialog(null,"Bạn có muốn sửa dữ liệu?", "Sữa dữ liệu", JOptionPane.YES_NO_OPTION);
             if(ret == JOptionPane.YES_OPTION){
-                KieuKhach KKMoi = new KieuKhach(Text_MaLoaiKhach.getText(),Text_LoaiKhach.getText());
+                KieuKhach KKMoi = new KieuKhach(Text_MaLoaiKhach.getText(),Text_LoaiKhach.getText(), Text_TyLePhuThu.getText());
                 if(indexTB < tblKieuKhach.getRowCount() && indexTB >= 0){
                     if(new KieuKhachDAO().SuaKieuKhach(KKCu, KKMoi)){   
                         tblKieuKhach.setValueAt(Text_MaLoaiKhach, indexTB, 1);
-                        tblKieuKhach.setValueAt(Text_LoaiKhach, indexTB, 2);                     
+                        tblKieuKhach.setValueAt(Text_LoaiKhach, indexTB, 2); 
+                        tblKieuKhach.setValueAt(Text_LoaiKhach, indexTB, 3); 
                         JOptionPane.showMessageDialog(this, "Sửa thành công.");
                         updateTable();
                         clearJTextKieuPhong();
@@ -288,6 +308,7 @@ public class KieuKhachJFrame extends javax.swing.JFrame {
     public void clearJTextKieuPhong(){
         Text_MaLoaiKhach.setText("");
         Text_LoaiKhach.setText("");
+        Text_TyLePhuThu.setText("");
     }
     
     private void Button_XoaKieuKhachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_XoaKieuKhachActionPerformed
@@ -315,8 +336,13 @@ public class KieuKhachJFrame extends javax.swing.JFrame {
         if (indexTB < tblKieuKhach.getRowCount() && indexTB >= 0){
             Text_MaLoaiKhach.setText(tblKieuKhach.getValueAt(indexTB, 1).toString());
             Text_LoaiKhach.setText(tblKieuKhach.getValueAt(indexTB, 2).toString());
+            Text_TyLePhuThu.setText(tblKieuKhach.getValueAt(indexTB, 3).toString());           
         }
     }//GEN-LAST:event_Table_KieuKhachMouseClicked
+
+    private void Text_TyLePhuThuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Text_TyLePhuThuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Text_TyLePhuThuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -361,8 +387,10 @@ public class KieuKhachJFrame extends javax.swing.JFrame {
     private javax.swing.JTable Table_KieuKhach;
     private javax.swing.JTextField Text_LoaiKhach;
     private javax.swing.JTextField Text_MaLoaiKhach;
+    private javax.swing.JTextField Text_TyLePhuThu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane3;
