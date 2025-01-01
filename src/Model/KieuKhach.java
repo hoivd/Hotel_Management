@@ -12,14 +12,16 @@ package Model;
 public class KieuKhach {
     private String MaLoaiKhach;
     private String LoaiKhach;
+    private String TyLePhuThu;
 
 
     public KieuKhach() {
     }
 
-    public KieuKhach(String MaLoaiKhach, String LoaiKhach) {
+    public KieuKhach(String MaLoaiKhach, String LoaiKhach, String TyLePhuThu) {
         this.MaLoaiKhach = MaLoaiKhach;
         this.LoaiKhach = LoaiKhach;
+        this.TyLePhuThu = TyLePhuThu;
     }
 
     public String getMaLoaiKhach() {
@@ -38,4 +40,11 @@ public class KieuKhach {
         this.LoaiKhach = LoaiKhach;
     }
   
+     public String getTyLePhuThu() {
+        return TyLePhuThu;
+    }
+
+    public void setTyLePhuThu(String TyLePhuThu) {
+        this.TyLePhuThu = TyLePhuThu;
+    }
 }
