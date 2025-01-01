@@ -21,8 +21,8 @@ public class DataBaseConnection {
     public static Connection getConnection(){
         Connection con = null;
         final String url = "jdbc:oracle:thin:@localhost:1521:xe";
-        final String user = "c##thanh";
-        final String password = "thanh";
+        final String user = "c##hoivd";
+        final String password = "hoivd";
         try {
             
             con = DriverManager.getConnection(url,user,password);
