@@ -512,8 +512,8 @@ CREATE TABLE BCDOANHTHUDV (
 
 /* START OF INSERT VALUES                           */
 
-INSERT INTO THAMSO (MATS, TENTS, GIATRI, ACTIVE) VALUES ('SoLoaiPhong', 'Số Loại Phòng', 2, 1);
-INSERT INTO THAMSO (MATS, TENTS, GIATRI, ACTIVE) VALUES ('SoKhachToiDa', 'Số khách tối đa', 3, 1);
+-- INSERT INTO THAMSO (MATS, TENTS, GIATRI, ACTIVE) VALUES ('SoLoaiPhong', 'Số Loại Phòng', 2, 1);
+-- INSERT INTO THAMSO (MATS, TENTS, GIATRI, ACTIVE) VALUES ('SoKhachToiDa', 'Số khách tối đa', 3, 1);
 INSERT INTO THAMSO (MATS, TENTS, GIATRI, ACTIVE) VALUES ('TiLePhuThuKhach', 'Tỉ lệ phụ thu khách vượt số lượng', 0.25, 1);
 INSERT INTO THAMSO (MATS, TENTS, GIATRI, ACTIVE) VALUES ('TiLePhuThuKhachNN', 'Tỉ lệ phụ thu khách nước ngoài', 0.5, 1);
 INSERT INTO THAMSO (MATS, TENTS, GIATRI, ACTIVE) VALUES ('TiLeTraTruoc', 'Tỉ lệ trả trước', 0.5, 1);
@@ -740,39 +740,39 @@ insert into taikhoan(tentaikhoan,manv,matkhau,quyen) values ('user',2,'user','us
 
 
 /* START OF TRIGGER                           */
-
-CREATE OR REPLACE TRIGGER trg_check_distinct_kieuphong
-BEFORE INSERT ON LOAIPHONG
-FOR EACH ROW
-DECLARE
-    v_distinct_count NUMBER; 
-    v_max_limit NUMBER;
-BEGIN
-    SELECT GIATRI
-    INTO v_max_limit
-    FROM THAMSO
-    WHERE MATS = 'SoLoaiPhong';
-
-    SELECT COUNT(DISTINCT KIEUPHONG)
-    INTO v_distinct_count
-    FROM LOAIPHONG
-    WHERE KIEUPHONG IS NOT NULL;
-
-    IF :NEW.KIEUPHONG IS NOT NULL THEN
-        SELECT COUNT(*)
-        INTO v_distinct_count
-        FROM (
-            SELECT DISTINCT KIEUPHONG FROM LOAIPHONG
-            UNION
-            SELECT :NEW.KIEUPHONG FROM DUAL
-        );
-    END IF;
-
-    IF v_distinct_count > v_max_limit THEN
-        RAISE_APPLICATION_ERROR(-20004, 'Ko dc vươt qua gia tri quy dinh');
-    END IF;
-END trg_check_distinct_kieuphong;
-/
+-- 
+-- CREATE OR REPLACE TRIGGER trg_check_distinct_kieuphong
+-- BEFORE INSERT ON LOAIPHONG
+-- FOR EACH ROW
+-- DECLARE
+--     v_distinct_count NUMBER; 
+--     v_max_limit NUMBER;
+-- BEGIN
+--     SELECT GIATRI
+--     INTO v_max_limit
+--     FROM THAMSO
+--     WHERE MATS = 'SoLoaiPhong';
+-- 
+--     SELECT COUNT(DISTINCT KIEUPHONG)
+--     INTO v_distinct_count
+--     FROM LOAIPHONG
+--     WHERE KIEUPHONG IS NOT NULL;
+-- 
+--     IF :NEW.KIEUPHONG IS NOT NULL THEN
+--         SELECT COUNT(*)
+--         INTO v_distinct_count
+--         FROM (
+--             SELECT DISTINCT KIEUPHONG FROM LOAIPHONG
+--             UNION
+--             SELECT :NEW.KIEUPHONG FROM DUAL
+--         );
+--     END IF;
+-- 
+--     IF v_distinct_count > v_max_limit THEN
+--         RAISE_APPLICATION_ERROR(-20004, 'Ko dc vươt qua gia tri quy dinh');
+--     END IF;
+-- END trg_check_distinct_kieuphong;
+-- /
 
 
 CREATE OR REPLACE TRIGGER trg_check_distinct_kieukhach
@@ -1572,12 +1572,7 @@ BEGIN
 
 END;
 /
-delete thanhtoan;
-delete chitietdatphong;
-delete hoadondv;
-delete phieudatphong;
-delete bcdoanhthuphong;
-delete bcdoanhthudv;
+
 
 
 
