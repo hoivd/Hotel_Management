@@ -243,7 +243,7 @@ public class KieuKhachJFrame extends javax.swing.JFrame {
                 updateTable();
                 clearJTextKieuPhong();
             } else {
-                JOptionPane.showMessageDialog(this, "Số lượng kiểu khách vượt quá mức qui định!");               
+                JOptionPane.showMessageDialog(this, "Thêm không thành công");               
             }
         }
     }//GEN-LAST:event_Button_ThemKieuKhachActionPerformed
