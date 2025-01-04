@@ -1,3 +1,41 @@
+--Drop database
+BEGIN
+    -- Drop all triggers
+    FOR trg IN (SELECT trigger_name FROM user_triggers) LOOP
+        EXECUTE IMMEDIATE 'DROP TRIGGER ' || trg.trigger_name;
+    END LOOP;
+
+    -- Drop all procedures
+    FOR proc IN (SELECT object_name FROM user_objects WHERE object_type = 'PROCEDURE') LOOP
+        EXECUTE IMMEDIATE 'DROP PROCEDURE ' || proc.object_name;
+    END LOOP;
+
+    -- Drop all functions
+    FOR func IN (SELECT object_name FROM user_objects WHERE object_type = 'FUNCTION') LOOP
+        EXECUTE IMMEDIATE 'DROP FUNCTION ' || func.object_name;
+    END LOOP;
+
+    -- Drop all types
+    FOR typ IN (SELECT type_name FROM user_types) LOOP
+        EXECUTE IMMEDIATE 'DROP TYPE ' || typ.type_name || ' FORCE';
+    END LOOP;
+
+    -- Drop all sequences
+    FOR seq IN (SELECT sequence_name FROM user_sequences) LOOP
+        EXECUTE IMMEDIATE 'DROP SEQUENCE ' || seq.sequence_name;
+    END LOOP;
+
+    -- Drop all tables
+    FOR tbl IN (SELECT table_name FROM user_tables) LOOP
+        EXECUTE IMMEDIATE 'DROP TABLE ' || tbl.table_name || ' CASCADE CONSTRAINTS';
+    END LOOP;
+
+    DBMS_OUTPUT.PUT_LINE('All objects in the current schema have been dropped successfully.');
+END;
+/
+
+
+
 /*==========================================================================================================*/
 /*=============================================CREATE SEQUENCES==============================================*/
 /*==========================================================================================================*/
@@ -180,6 +218,7 @@ create index DATDVTUPHONG_FK on HOADONDV (
 CREATE TABLE LOAIKHACH (
    MALOAIKHACH         VARCHAR2(10)         NOT NULL,
    TENLOAIKHACH        VARCHAR2(50)         NOT NULL,
+   TYLEPHUTHU          NUMBER(19,2)         DEFAULT 0,
    CONSTRAINT PK_LOAIKHACH PRIMARY KEY (MALOAIKHACH)
 );
 
@@ -545,8 +584,8 @@ begin
                 (SELECT MADATPHONG 
                     FROM PHIEUDATPHONG 
                     WHERE  
-                        ( TRUNC(NGAYNHAN) <= TRUNC(ngaynhan_i) AND TRUNC(ngaynhan_i) <= TRUNC(NGAYTRA))
-                        OR ( TRUNC(NGAYNHAN) <= TRUNC(ngaytra_i) AND TRUNC(ngaytra_i) <= TRUNC(NGAYTRA) ) 
+                        (NGAYNHAN <= ngaynhan_i AND ngaynhan_i <= NGAYTRA)
+                        OR ( NGAYNHAN <= ngaytra_i AND ngaytra_i <= NGAYTRA) 
                     ) A
                 JOIN CHITIETDATPHONG B
                 on A.MADATPHONG = B.MADATPHONG
@@ -889,6 +928,7 @@ BEGIN
         end if;
     END LOOP;
     UPDATE PHIEUDATPHONG SET TTNHANPHONG = 1 WHERE MADATPHONG = madatphong_i;
+    UPDATE PHIEUDATPHONG SET NGAYNHAN = SYSDATE WHERE MADATPHONG = madatphong_i;
     COMMIT;
     EXCEPTION 
         WHEN NO_DATA_FOUND THEN
@@ -1130,16 +1170,11 @@ END INSERT_DON_DV;
 
 /*==================================INSERT VALUE===================================*/
 
--- INSERT INTO THAMSO (MATS, TENTS, GIATRI, ACTIVE) VALUES ('SoLoaiPhong', 'Số Loại Phòng', 2, 1);
--- INSERT INTO THAMSO (MATS, TENTS, GIATRI, ACTIVE) VALUES ('SoKhachToiDa', 'Số khách tối đa', 3, 1);
-INSERT INTO THAMSO (MATS, TENTS, GIATRI, ACTIVE) VALUES ('TiLePhuThuKhach', 'Tỉ lệ phụ thu khách vượt số lượng', 0.25, 1);
-INSERT INTO THAMSO (MATS, TENTS, GIATRI, ACTIVE) VALUES ('TiLePhuThuKhachNN', 'Tỉ lệ phụ thu khách nước ngoài', 0.5, 1);
 INSERT INTO THAMSO (MATS, TENTS, GIATRI, ACTIVE) VALUES ('TiLeTraTruoc', 'Tỉ lệ trả trước', 0.5, 1);
-INSERT INTO THAMSO (MATS, TENTS, GIATRI, ACTIVE) VALUES ('SoLoaiKhach', 'Số loại khách', 3, 1);
 
 
-INSERT INTO LOAIKHACH (MALOAIKHACH, TENLOAIKHACH) VALUES ('NN', 'Khách nước ngoài');
-INSERT INTO LOAIKHACH (MALOAIKHACH, TENLOAIKHACH) VALUES ('ND', 'Khách nội địa');
+INSERT INTO LOAIKHACH (MALOAIKHACH, TENLOAIKHACH, TYLEPHUTHU) VALUES ('NN', 'Khách nước ngoài', 0.25);
+INSERT INTO LOAIKHACH (MALOAIKHACH, TENLOAIKHACH, TYLEPHUTHU) VALUES ('ND', 'Khách nội địa', 0);
 
 insert into KhachHang (TenKH, CCCD, SDT, GioiTinh, MALOAIKHACH) values ( 'Nguyễn Văn An', '000000101', '012340201','Nam', 'NN');
 insert into KhachHang (TenKH, CCCD, SDT, GioiTinh, MALOAIKHACH) values ('Phạm Băng Viên', '000002002', '014342104','Nam', 'NN');

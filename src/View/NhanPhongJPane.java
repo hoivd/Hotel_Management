@@ -98,6 +98,19 @@ public class NhanPhongJPane extends javax.swing.JPanel {
 
     }
     
+    public void updateNgayNhan(){
+        Connection conn = new DataBaseConnection().getConnection();
+            String sql = "UPDATE PHIEUDATPHONG SET NGAYNHAN = TRUNC(SYSDATE) WHERE MADATPHONG = ?";
+            try {
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ps.setInt(1, Integer.parseInt(Text_MaDatPhong.getText()));
+                ps.executeUpdate();
+                conn.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

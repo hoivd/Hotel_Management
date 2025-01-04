@@ -471,7 +471,7 @@ public class TraPhongJPane extends javax.swing.JPanel {
         if (result == JOptionPane.OK_OPTION)
         {
             Connection conn = new DataBaseConnection().getConnection();
-            String sql = "UPDATE PHIEUDATPHONG SET NGAYTRA = TRUNC(SYSDATE - 1) WHERE MADATPHONG = ?";
+            String sql = "UPDATE PHIEUDATPHONG SET NGAYTRA = SYSDATE WHERE MADATPHONG = ?";
             try {
                 PreparedStatement ps = conn.prepareStatement(sql);
                 ps.setInt(1, Integer.parseInt(Text_MaDatPhong.getText()));
@@ -480,9 +480,6 @@ public class TraPhongJPane extends javax.swing.JPanel {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            System.out.println(Integer.parseInt(Text_MaDatPhong.getText()));
-            System.out.println(panel.getTienKhachTra());
-            System.out.println(panel.getHinhThucThanhToan());
             
             this.themThanhToan(Integer.parseInt(Text_MaDatPhong.getText()),panel.getTienKhachTra() , panel.getHinhThucThanhToan());
             
