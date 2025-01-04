@@ -33,7 +33,7 @@ public class QuanLiPhongJPane extends javax.swing.JPanel {
         Table_ChiTietTTPhong.setShowHorizontalLines(true);
         listChiTietTTPhong = new ThongTinPhongDAO().getListChiTietTTPhong();
         tblChiTietTTPhong = (DefaultTableModel) Table_ChiTietTTPhong.getModel();
-        tblChiTietTTPhong.setColumnIdentifiers(new Object[]{"STT","Mã phòng", "Kiểu phòng", "Kiểu giường", "Giá phòng", "MoTa"});
+        tblChiTietTTPhong.setColumnIdentifiers(new Object[]{"STT","Mã phòng", "Kiểu phòng", "Kiểu giường", "Giá phòng", "Mô tả", "Số khách tối đa"});
         showTableChiTietTTPhong();
         showComboBox_KieuPhong();
         showText_GiaPhong(ComboBox_KieuPhong.getSelectedItem().toString(), Integer.parseInt(ComboBox_KieuGiuong.getSelectedItem().toString()));
@@ -72,6 +72,8 @@ public class QuanLiPhongJPane extends javax.swing.JPanel {
         jScrollPane4 = new javax.swing.JScrollPane();
         Text_MoTa = new javax.swing.JTextArea();
         jLabel17 = new javax.swing.JLabel();
+        Text_SoKhachToiDa = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         Table_ChiTietTTPhong = new javax.swing.JTable();
 
@@ -169,7 +171,7 @@ public class QuanLiPhongJPane extends javax.swing.JPanel {
                     .addComponent(Button_XoaCTTTPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Button_QuanLiKieuPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         ComboBox_KieuPhong.addActionListener(new java.awt.event.ActionListener() {
@@ -196,6 +198,17 @@ public class QuanLiPhongJPane extends javax.swing.JPanel {
         jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel17.setText("Mô tả");
 
+        Text_SoKhachToiDa.setEditable(false);
+        Text_SoKhachToiDa.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Text_SoKhachToiDa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Text_SoKhachToiDaActionPerformed(evt);
+            }
+        });
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel19.setText("Số khách tối đa");
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -203,15 +216,22 @@ public class QuanLiPhongJPane extends javax.swing.JPanel {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel17)
+                        .addContainerGap(297, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(Text_GiaPhong)
@@ -219,14 +239,9 @@ public class QuanLiPhongJPane extends javax.swing.JPanel {
                                     .addComponent(ComboBox_KieuGiuong, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(jPanel6Layout.createSequentialGroup()
                                         .addComponent(Text_MaPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE)))))
-                        .addGap(126, 126, 126))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel17)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(Text_SoKhachToiDa))))
+                        .addGap(126, 126, 126))))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,13 +262,17 @@ public class QuanLiPhongJPane extends javax.swing.JPanel {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
                     .addComponent(Text_GiaPhong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel19)
+                    .addComponent(Text_SoKhachToiDa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel17)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(19, 19, 19))
+                .addGap(27, 27, 27)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
         );
 
         Table_ChiTietTTPhong.setModel(new javax.swing.table.DefaultTableModel(
@@ -261,7 +280,7 @@ public class QuanLiPhongJPane extends javax.swing.JPanel {
 
             },
             new String [] {
-                "STT", "Mã phòng", "Loại phòng", "Loại giường", "Giá phòng"
+                "STT", "Mã phòng", "Loại phòng", "Loại giường", "Giá phòng", "Mô tả", "Số khách tối đa"
             }
         ));
         Table_ChiTietTTPhong.setShowHorizontalLines(true);
@@ -280,7 +299,7 @@ public class QuanLiPhongJPane extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 683, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -310,7 +329,7 @@ public class QuanLiPhongJPane extends javax.swing.JPanel {
         listChiTietTTPhong = new ThongTinPhongDAO().getListChiTietTTPhong();
         for(ThongTinPhong ttPhong : listChiTietTTPhong){
             tblChiTietTTPhong.addRow(new Object[]{i++, ttPhong.getMaPhg(), ttPhong.getKieuPhong(), ttPhong.getKieuGiuong(), 
-                ttPhong.getDonGia(), ttPhong.getMoTa()});          
+                ttPhong.getDonGia(), ttPhong.getMoTa(), ttPhong.getSoKhachToiDa()});          
         }
     }
     
@@ -326,6 +345,7 @@ public class QuanLiPhongJPane extends javax.swing.JPanel {
             ttPhong.setKieuPhong(ComboBox_KieuPhong.getSelectedItem().toString());
             ttPhong.setKieuGiuong(Integer.parseInt(ComboBox_KieuGiuong.getSelectedItem().toString()));
             ttPhong.setMoTa(Text_MoTa.getText());
+            ttPhong.setSoKhachToiDa(Integer.parseInt(Text_SoKhachToiDa.getText()));
             //ttPhong.setDonGia(Integer.parseInt(Text_GiaPhong.getText()));
             if(new ThongTinPhongDAO().ThemChiTietTTPhong(ttPhong)){
                 JOptionPane.showMessageDialog(this, "Thêm thành công");
@@ -355,12 +375,12 @@ public class QuanLiPhongJPane extends javax.swing.JPanel {
             }else{
                 Text_MoTa.setText(tblChiTietTTPhong.getValueAt(indexTB, 5).toString());
             }
-            
+            Text_SoKhachToiDa.setText(tblChiTietTTPhong.getValueAt(indexTB, 6).toString());
         }
     }//GEN-LAST:event_Table_ChiTietTTPhongMouseClicked
     
     public ThongTinPhong returnTTPhong(int index){
-        String MaPhong = tblChiTietTTPhong.getValueAt(index, 1).toString();
+         String MaPhong = tblChiTietTTPhong.getValueAt(index, 1).toString();
         String KieuPhong = tblChiTietTTPhong.getValueAt(index, 2).toString();
         int KieuGiuong = (int) tblChiTietTTPhong.getValueAt(index, 3);
         int DonGia = (int) tblChiTietTTPhong.getValueAt(index, 4);
@@ -370,7 +390,8 @@ public class QuanLiPhongJPane extends javax.swing.JPanel {
         }else{
             MoTa = tblChiTietTTPhong.getValueAt(index, 5).toString();
         }
-        return new ThongTinPhong(MaPhong, KieuPhong, KieuGiuong, DonGia, MoTa);
+        int SoKhachToiDa = (int) tblChiTietTTPhong.getValueAt(index, 6);
+        return new ThongTinPhong(MaPhong, KieuPhong, KieuGiuong, DonGia, MoTa, SoKhachToiDa);
     }
     
     private void Button_XoaCTTTPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_XoaCTTTPhongActionPerformed
@@ -409,7 +430,8 @@ public class QuanLiPhongJPane extends javax.swing.JPanel {
             if(ret == JOptionPane.YES_OPTION){
                 ThongTinPhong ttPhongMoi = new ThongTinPhong(Text_MaPhong.getText(),ComboBox_KieuPhong.getSelectedItem().toString(),
                                                                         Integer.parseInt(ComboBox_KieuGiuong.getSelectedItem().toString()),
-                                                                        Integer.parseInt(Text_GiaPhong.getText()), Text_MoTa.getText());
+                                                                        Integer.parseInt(Text_GiaPhong.getText()), Text_MoTa.getText(),
+                                                                        Integer.parseInt(Text_SoKhachToiDa.getText()));
                 if (new ThongTinPhongDAO().SuaChiTietTTPhong(ttPhongMoi, ttPhongCu)) {
                     if(indexTB < tblChiTietTTPhong.getRowCount() && indexTB >= 0){
                         tblChiTietTTPhong.setValueAt(Text_MaPhong.getText(), indexTB, 1);
@@ -442,6 +464,10 @@ public class QuanLiPhongJPane extends javax.swing.JPanel {
         showComboBox_KieuGiuong(ComboBox_KieuPhong.getSelectedItem().toString());
         showText_GiaPhong(ComboBox_KieuPhong.getSelectedItem().toString(), Integer.parseInt(ComboBox_KieuGiuong.getSelectedItem().toString()));
     }//GEN-LAST:event_ComboBox_KieuPhongActionPerformed
+
+    private void Text_SoKhachToiDaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Text_SoKhachToiDaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Text_SoKhachToiDaActionPerformed
     
     public void showComboBox_KieuPhong(){
         ArrayList<ThongTinPhong> ttKieuPhong = new ThongTinPhongDAO().getKieuPhong();
@@ -468,6 +494,7 @@ public class QuanLiPhongJPane extends javax.swing.JPanel {
         ComboBox_KieuGiuong.setSelectedItem("1");
         Text_GiaPhong.setText("");
         Text_MoTa.setText("");
+        Text_SoKhachToiDa.setText("");
     }
         
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -482,10 +509,12 @@ public class QuanLiPhongJPane extends javax.swing.JPanel {
     private javax.swing.JTextField Text_GiaPhong;
     private javax.swing.JTextField Text_MaPhong;
     private javax.swing.JTextArea Text_MoTa;
+    private javax.swing.JTextField Text_SoKhachToiDa;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;

@@ -73,7 +73,7 @@ public class ThongTinPhongDAO {
     
     public ArrayList<ThongTinPhong> getListChiTietTTPhong(){
         ArrayList<ThongTinPhong> listTTPhong = new ArrayList<>();
-        String sql = "SELECT P.MAPHG, P.MoTa, LP.KIEUPHONG, LP.KIEUGIUONG, LP.DONGIA "
+        String sql = "SELECT P.MAPHG, P.MoTa, LP.KIEUPHONG, LP.KIEUGIUONG, LP.DONGIA, LP.SOKHACHTOIDA, LP.TYLEPHUTHU "
                 + "FROM PHONG P, LOAIPHONG LP WHERE P.MALOAIPHG = LP.MALOAIPHG";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -85,6 +85,8 @@ public class ThongTinPhongDAO {
                 ttPhong.setKieuGiuong(rs.getInt("KieuGiuong"));
                 ttPhong.setDonGia(rs.getInt("DonGia"));
                 ttPhong.setMoTa(rs.getString("MoTa"));
+                ttPhong.setSoKhachToiDa(rs.getInt("SOKHACHTOIDA"));
+                ttPhong.setTyLePhuThu(rs.getDouble("TYLEPHUTHU"));
                 listTTPhong.add(ttPhong);
             }
         } catch (Exception e) {
@@ -98,7 +100,7 @@ public class ThongTinPhongDAO {
         
         con.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
         ArrayList<ThongTinPhong> listTTPhong = new ArrayList<>();
-        String sql = "SELECT P.MAPHG, P.MoTa, LP.KIEUPHONG, LP.KIEUGIUONG, LP.DONGIA "
+        String sql = "SELECT P.MAPHG, P.MoTa, LP.KIEUPHONG, LP.KIEUGIUONG, LP.DONGIA, LP.SOKHACHTOIDA, LP.TYLEPHUTHU "
                 + "FROM PHONG P, LOAIPHONG LP "+
                 "WHERE P.MALOAIPHG = LP.MALOAIPHG AND LP.KIEUPHONG Like ? AND TO_CHAR(LP.KIEUGIUONG) LIKE ? AND MAPHG IN (SELECT * FROM TABLE (GETAVAILABLEROOM(?,?)))";
         try {
@@ -115,6 +117,8 @@ public class ThongTinPhongDAO {
                 ttPhong.setKieuGiuong(rs.getInt("KieuGiuong"));
                 ttPhong.setDonGia(rs.getInt("DonGia"));
                 ttPhong.setMoTa(rs.getString("MoTa"));
+                ttPhong.setSoKhachToiDa(rs.getInt("SOKHACHTOIDA"));
+                ttPhong.setTyLePhuThu(rs.getDouble("TYLEPHUTHU"));
                 listTTPhong.add(ttPhong);
             }
         } catch (Exception e) {

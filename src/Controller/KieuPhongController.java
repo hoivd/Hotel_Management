@@ -13,8 +13,8 @@ import javax.swing.JComboBox;
  * @author asus
  */
 public class KieuPhongController {
-    public boolean KtraJtextKieuPhong(JTextField MaLoaiPhg, JComboBox KieuGiuong, JTextField KieuPhong, JTextField GiaPhong){
-        if(MaLoaiPhg.getText().equals("") || KieuGiuong.getSelectedItem().equals("") || KieuPhong.getText().equals("") || GiaPhong.getText().equals("")){
+    public boolean KtraJtextKieuPhong(JTextField MaLoaiPhg, JTextField KieuGiuong, JTextField KieuPhong, JTextField GiaPhong, JTextField SoKhachToiDa){
+        if(MaLoaiPhg.getText().equals("") || KieuGiuong.getText().equals("") || KieuPhong.getText().equals("") || GiaPhong.getText().equals("") || SoKhachToiDa.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Vui lòng nhập đủ thông tin.");
             return false;
         }
@@ -22,8 +22,13 @@ public class KieuPhongController {
             JOptionPane.showMessageDialog(null, "Giá phòng phải là số. Vui lòng nhập lại.");
             return false;
         }
-        if(!isNumberOrNot((String) KieuGiuong.getSelectedItem())){
+        if(!isNumberOrNot(KieuGiuong.getText())){
             JOptionPane.showMessageDialog(null, "Kiểu giường phải là số. Vui lòng nhập lại.");
+            return false;
+        }
+        
+        if(!isNumberOrNot(SoKhachToiDa.getText())){
+            JOptionPane.showMessageDialog(null, "Số khách tối đa phải là số. Vui lòng nhập lại.");
             return false;
         }
         return true;

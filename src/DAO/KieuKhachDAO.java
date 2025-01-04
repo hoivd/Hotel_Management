@@ -76,7 +76,7 @@ public class KieuKhachDAO {
         return listKieuKhach;
     }
     
-    public String getFilterMaLoaiKhach(String TenLoaiKhach){
+    public String getMaLoaiKhachByTenLK(String TenLoaiKhach){
         String sql = "SELECT MALOAIKHACH FROM LOAIKHACH WHERE TENLOAIKHACH = ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);

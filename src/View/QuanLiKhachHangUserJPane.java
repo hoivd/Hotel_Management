@@ -48,7 +48,7 @@ public class QuanLiKhachHangUserJPane extends javax.swing.JPanel {
         int i = 1;
         listKhachHang = new KhachHangDAO().getListKhachHang();
         for(KhachHang kh : listKhachHang){
-            tblKhachHang.addRow(new Object[]{i++, kh.getMaKH(), kh.getTenKH(), kh.getLoaiKhach(), kh.getGioiTinh(), kh.getCCCD(), kh.getSDT(), kh.getDoanhSo()});
+            tblKhachHang.addRow(new Object[]{i++, kh.getMaKH(), kh.getTenKH(), kh.getTenLoaiKhach(), kh.getGioiTinh(), kh.getCCCD(), kh.getSDT(), kh.getDoanhSo()});
         }
     }
     
@@ -367,8 +367,8 @@ public class QuanLiKhachHangUserJPane extends javax.swing.JPanel {
             kh.setGioiTinh(ComboBox_GioiTinh.getSelectedItem().toString());
             kh.setSDT(Text_SDT.getText());
             String LoaiKhach = ComboBox_LoaiKhach.getSelectedItem().toString();
-            String MaLoaiKhach = new KieuKhachDAO().getFilterMaLoaiKhach(LoaiKhach);
-            kh.setLoaiKhach(MaLoaiKhach);
+            String MaLoaiKhach = new KieuKhachDAO().getMaLoaiKhachByTenLK(LoaiKhach);
+            kh.setMaLoaiKhach(MaLoaiKhach);
             KhachHangDAO khDAO = new KhachHangDAO();
             if(khDAO.ThemKhachHang(kh)){
                 JOptionPane.showMessageDialog(this, "Thêm thành công.");
@@ -418,7 +418,7 @@ public class QuanLiKhachHangUserJPane extends javax.swing.JPanel {
             String SDT = Text_SDT.getText();
             String CCCD = Text_CCCD.getText();
             String LoaiKhach = ComboBox_LoaiKhach.getSelectedItem().toString();
-            String MaLoaiKhach = new KieuKhachDAO().getFilterMaLoaiKhach(LoaiKhach);
+            String MaLoaiKhach = new KieuKhachDAO().getMaLoaiKhachByTenLK(LoaiKhach);
             KhachHang kh = new KhachHang(MaKH, HoTen, CCCD, GioiTinh, SDT, MaLoaiKhach);
             int ret = JOptionPane.showConfirmDialog(null, "Bạn có muốn sửa dữ liệu?", "Sửa dữ liệu", JOptionPane.YES_NO_OPTION);
             if(ret == JOptionPane.YES_OPTION){
@@ -470,7 +470,7 @@ public class QuanLiKhachHangUserJPane extends javax.swing.JPanel {
         tblKhachHang.setRowCount(0);
         int i = 1;
         for(KhachHang kh : listKhachHang){
-            tblKhachHang.addRow(new Object[]{i++, kh.getMaKH(), kh.getTenKH(), kh.getLoaiKhach(), kh.getGioiTinh(), kh.getCCCD(), kh.getSDT(), kh.getDoanhSo()});
+            tblKhachHang.addRow(new Object[]{i++, kh.getMaKH(), kh.getTenKH(), kh.getTenLoaiKhach(), kh.getGioiTinh(), kh.getCCCD(), kh.getSDT(), kh.getDoanhSo()});
         }
         if(listKhachHang.size() <= 0)
             JOptionPane.showMessageDialog(this,"Không tìm thấy thông tin khách hàng. Vui lòng kiểm tra lại!");
@@ -483,8 +483,8 @@ public class QuanLiKhachHangUserJPane extends javax.swing.JPanel {
         kh.setSDT(Text_SDT.getText());
         kh.setGioiTinh(ComboBox_GioiTinh.getSelectedItem().toString());
         String LoaiKhach = ComboBox_LoaiKhach.getSelectedItem().toString();
-        String MaLoaiKhach = new KieuKhachDAO().getFilterMaLoaiKhach(LoaiKhach);
-        kh.setLoaiKhach(MaLoaiKhach);
+        String MaLoaiKhach = new KieuKhachDAO().getMaLoaiKhachByTenLK(LoaiKhach);
+        kh.setMaLoaiKhach(MaLoaiKhach);
         showResultTimKiem(kh);
     }//GEN-LAST:event_Button_TimKiemActionPerformed
     

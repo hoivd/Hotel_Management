@@ -30,14 +30,10 @@ public class KieuPhongJFrame extends javax.swing.JFrame {
         initComponents();
         listKieuPhong = new KieuPhongDAO().getListKieuPhong();
         tblKieuPhong = (DefaultTableModel) Table_KieuPhong.getModel();
-        tblKieuPhong.setColumnIdentifiers(new Object[]{"STT","Mã loại phòng", "Kiểu phòng", "Kiểu giường", "Giá phòng"});
+        tblKieuPhong.setColumnIdentifiers(new Object[]{"STT","Mã loại phòng", "Kiểu phòng", "Kiểu giường", "Giá phòng", "Số khách tối đa", "Tỷ lệ phụ thu", "Mô tả"});
         showTableChiTietDV();
         Button_SuaKieuPhong.setEnabled(false);
         Button_XoaKieuPhong.setEnabled(false);
-        
-        ComboBox_KieuGiuong.addItem("1");
-        ComboBox_KieuGiuong.addItem("2");
-        String kieugiuong = (String) ComboBox_KieuGiuong.getSelectedItem();
     }
     public int getRowTableKieuPhong(){
         return Table_KieuPhong.getRowCount();
@@ -69,7 +65,13 @@ public class KieuPhongJFrame extends javax.swing.JFrame {
         Button_XoaKieuPhong = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         Text_MaLoaiPhg = new javax.swing.JTextField();
-        ComboBox_KieuGiuong = new javax.swing.JComboBox<>();
+        Text_SoKhachToiDa = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        Text_MoTaLoaiPhong = new javax.swing.JTextField();
+        Text_KieuGiuong = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        Text_TyLePhuThu = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         Table_KieuPhong = new javax.swing.JTable();
 
@@ -159,12 +161,41 @@ public class KieuPhongJFrame extends javax.swing.JFrame {
         jLabel1.setText("Mã loại phòng");
 
         Text_MaLoaiPhg.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        ComboBox_KieuGiuong.setMinimumSize(new java.awt.Dimension(64, 26));
-        ComboBox_KieuGiuong.setName("6"); // NOI18N
-        ComboBox_KieuGiuong.addActionListener(new java.awt.event.ActionListener() {
+        Text_MaLoaiPhg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ComboBox_KieuGiuongActionPerformed(evt);
+                Text_MaLoaiPhgActionPerformed(evt);
+            }
+        });
+
+        Text_SoKhachToiDa.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Text_SoKhachToiDa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Text_SoKhachToiDaActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel9.setText("Số khách tối đa ");
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel10.setText("Mô tả loại phòng");
+
+        Text_MoTaLoaiPhong.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Text_MoTaLoaiPhong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Text_MoTaLoaiPhongActionPerformed(evt);
+            }
+        });
+
+        Text_KieuGiuong.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel11.setText("Tỷ lệ phụ thu");
+
+        Text_TyLePhuThu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Text_TyLePhuThu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Text_TyLePhuThuActionPerformed(evt);
             }
         });
 
@@ -172,46 +203,79 @@ public class KieuPhongJFrame extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Text_MaLoaiPhg, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
-                    .addComponent(Text_KieuPhong)
-                    .addComponent(Text_GiaPhong)
-                    .addComponent(ComboBox_KieuGiuong, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(Text_MoTaLoaiPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29)
+                                .addComponent(Text_MaLoaiPhg, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(29, 29, 29)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(Text_KieuPhong, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                                    .addComponent(Text_KieuGiuong))))
+                        .addGap(70, 70, 70)
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(29, 29, 29)
+                            .addComponent(Text_TyLePhuThu, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(29, 29, 29)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(Text_GiaPhong, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                                .addComponent(Text_SoKhachToiDa, javax.swing.GroupLayout.Alignment.TRAILING)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(37, 37, 37)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(Text_MaLoaiPhg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(Text_MaLoaiPhg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(Text_KieuPhong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(ComboBox_KieuGiuong, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(Text_KieuPhong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Text_KieuGiuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(Text_GiaPhong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                    .addComponent(Text_GiaPhong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Text_SoKhachToiDa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Text_TyLePhuThu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Text_MoTaLoaiPhong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         Table_KieuPhong.setModel(new javax.swing.table.DefaultTableModel(
@@ -219,7 +283,7 @@ public class KieuPhongJFrame extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã loại  phòng", "Kiểu phòng", "Kiểu giường", "Giá"
+                "Mã loại  phòng", "Kiểu phòng", "Kiểu giường", "Giá", "Số khách tối đa", "Tỷ lệ phụ thu", "Mô tả loại phòng"
             }
         ));
         Table_KieuPhong.setShowHorizontalLines(true);
@@ -236,19 +300,21 @@ public class KieuPhongJFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 528, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, 0)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 767, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -257,7 +323,7 @@ public class KieuPhongJFrame extends javax.swing.JFrame {
         int i = 1;
         ArrayList<KieuPhong> listKieuPhong = new KieuPhongDAO().getListKieuPhong();
         for(KieuPhong KP : listKieuPhong){
-            tblKieuPhong.addRow(new Object[]{i++, KP.getMaLoaiPhg(), KP.getKieuPhong(), KP.getKieuGiuong(), KP.getDonGia()});
+            tblKieuPhong.addRow(new Object[]{i++, KP.getMaLoaiPhg(), KP.getKieuPhong(), KP.getKieuGiuong(), KP.getDonGia(), KP.getSoKhachToiDa(),KP.getTyLePhuThu(), KP.getMoTaLoaiPhong()});
         }
     }
     
@@ -267,12 +333,15 @@ public class KieuPhongJFrame extends javax.swing.JFrame {
     }
     
     private void Button_ThemKieuPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_ThemKieuPhongActionPerformed
-        if(new KieuPhongController().KtraJtextKieuPhong(Text_MaLoaiPhg, ComboBox_KieuGiuong, Text_KieuPhong, Text_GiaPhong)){
+        if(new KieuPhongController().KtraJtextKieuPhong(Text_MaLoaiPhg, Text_KieuGiuong, Text_KieuPhong, Text_GiaPhong, Text_SoKhachToiDa)){
             KieuPhong KP = new KieuPhong();
             KP.setMaLoaiPhg(Text_MaLoaiPhg.getText());
             KP.setKieuPhong(Text_KieuPhong.getText());
-            KP.setKieuGiuong(Integer.parseInt((String) ComboBox_KieuGiuong.getSelectedItem()));
+            KP.setKieuGiuong(Integer.parseInt(Text_KieuGiuong.getText()));
             KP.setDonGia(Integer.parseInt(Text_GiaPhong.getText()));
+            KP.setSoKhachToiDa(Integer.parseInt(Text_SoKhachToiDa.getText()));
+            KP.setMoTaLoaiPhong(Text_MoTaLoaiPhong.getText());
+            KP.setTyLePhuThu(Double.parseDouble(Text_TyLePhuThu.getText()));
             if(new KieuPhongDAO().ThemKieuPhong(KP)){
                 JOptionPane.showMessageDialog(this, "Thêm thành công");
                 listKieuPhong.add(KP);
@@ -289,25 +358,34 @@ public class KieuPhongJFrame extends javax.swing.JFrame {
         String KieuPhong = tblKieuPhong.getValueAt(index, 2).toString();
         int KieuGiuong = (int) tblKieuPhong.getValueAt(index, 3);
         int GiaPhong = (int) tblKieuPhong.getValueAt(index, 4);
-        return new KieuPhong(MaLoaiPhg,KieuPhong,KieuGiuong,GiaPhong);
+        int SoKhachToiDa = (int) tblKieuPhong.getValueAt(index, 5);
+        double TyLePhuThu = (double) tblKieuPhong.getValueAt(index, 6);
+        String MoTaLoaiPhong = tblKieuPhong.getValueAt(index, 7).toString();
+        return new KieuPhong(MaLoaiPhg,KieuPhong,KieuGiuong,GiaPhong,SoKhachToiDa, TyLePhuThu, MoTaLoaiPhong);
     }
     
     private void Button_SuaKieuPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_SuaKieuPhongActionPerformed
         
-        if(new KieuPhongController().KtraJtextKieuPhong(Text_MaLoaiPhg, ComboBox_KieuGiuong, Text_KieuPhong, Text_GiaPhong)){
+        if(new KieuPhongController().KtraJtextKieuPhong(Text_MaLoaiPhg, Text_KieuGiuong, Text_KieuPhong, Text_GiaPhong,Text_SoKhachToiDa)){
             int indexTB = Table_KieuPhong.getSelectedRow();
             KieuPhong KPCu = returnTTKieuPhong(indexTB);
             int ret = JOptionPane.showConfirmDialog(null,"Bạn có muốn sửa dữ liệu?", "Sữa dữ liệu", JOptionPane.YES_NO_OPTION);
             if(ret == JOptionPane.YES_OPTION){
                 KieuPhong KPMoi = new KieuPhong(Text_MaLoaiPhg.getText(),Text_KieuPhong.getText(),
-                                                Integer.parseInt((String) ComboBox_KieuGiuong.getSelectedItem()),
-                                                Integer.parseInt(Text_GiaPhong.getText().toString()));
+                                                Integer.parseInt((String) Text_KieuGiuong.getText()),
+                                                Integer.parseInt(Text_GiaPhong.getText()),
+                                                Integer.parseInt(Text_SoKhachToiDa.getText()),
+                                                Double.parseDouble(Text_TyLePhuThu.getText()),
+                                                Text_MoTaLoaiPhong.getText());
                 if(indexTB < tblKieuPhong.getRowCount() && indexTB >= 0){
                     if(new KieuPhongDAO().SuaKieuPhong(KPCu, KPMoi)){   
                         tblKieuPhong.setValueAt(Text_MaLoaiPhg, indexTB, 1);
                         tblKieuPhong.setValueAt(Text_KieuPhong, indexTB, 2);
-                        tblKieuPhong.setValueAt(ComboBox_KieuGiuong, indexTB, 3);
+                        tblKieuPhong.setValueAt(Text_KieuGiuong, indexTB, 3);
                         tblKieuPhong.setValueAt(Text_GiaPhong, indexTB, 4);
+                        tblKieuPhong.setValueAt(Text_SoKhachToiDa, indexTB, 5);
+                        tblKieuPhong.setValueAt(Text_TyLePhuThu, indexTB, 6);
+                        tblKieuPhong.setValueAt(Text_MoTaLoaiPhong, indexTB, 7);
                         JOptionPane.showMessageDialog(this, "Sửa thành công.");
                         updateTable();
                         clearJTextKieuPhong();
@@ -331,6 +409,10 @@ public class KieuPhongJFrame extends javax.swing.JFrame {
         Text_MaLoaiPhg.setText("");
         Text_KieuPhong.setText("");
         Text_GiaPhong.setText("");
+        Text_SoKhachToiDa.setText("");
+        Text_MoTaLoaiPhong.setText("");
+        Text_KieuGiuong.setText("");
+        Text_TyLePhuThu.setText("");
     }
     
     private void Button_XoaKieuPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_XoaKieuPhongActionPerformed
@@ -358,14 +440,29 @@ public class KieuPhongJFrame extends javax.swing.JFrame {
         if (indexTB < tblKieuPhong.getRowCount() && indexTB >= 0){
             Text_MaLoaiPhg.setText(tblKieuPhong.getValueAt(indexTB, 1).toString());
             Text_KieuPhong.setText(tblKieuPhong.getValueAt(indexTB, 2).toString());
-            ComboBox_KieuGiuong.setSelectedItem(tblKieuPhong.getValueAt(indexTB, 3).toString());
+            Text_KieuGiuong.setText(tblKieuPhong.getValueAt(indexTB, 3).toString());
             Text_GiaPhong.setText(tblKieuPhong.getValueAt(indexTB, 4).toString());
+            Text_SoKhachToiDa.setText(tblKieuPhong.getValueAt(indexTB, 5).toString());
+            Text_TyLePhuThu.setText(tblKieuPhong.getValueAt(indexTB,6).toString());
+            Text_MoTaLoaiPhong.setText(tblKieuPhong.getValueAt(indexTB, 7).toString());
         }
     }//GEN-LAST:event_Table_KieuPhongMouseClicked
 
-    private void ComboBox_KieuGiuongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBox_KieuGiuongActionPerformed
+    private void Text_SoKhachToiDaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Text_SoKhachToiDaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ComboBox_KieuGiuongActionPerformed
+    }//GEN-LAST:event_Text_SoKhachToiDaActionPerformed
+
+    private void Text_MoTaLoaiPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Text_MoTaLoaiPhongActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Text_MoTaLoaiPhongActionPerformed
+
+    private void Text_MaLoaiPhgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Text_MaLoaiPhgActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Text_MaLoaiPhgActionPerformed
+
+    private void Text_TyLePhuThuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Text_TyLePhuThuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Text_TyLePhuThuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -407,15 +504,21 @@ public class KieuPhongJFrame extends javax.swing.JFrame {
     private javax.swing.JButton Button_SuaKieuPhong;
     private javax.swing.JButton Button_ThemKieuPhong;
     private javax.swing.JButton Button_XoaKieuPhong;
-    private javax.swing.JComboBox<String> ComboBox_KieuGiuong;
     private javax.swing.JTable Table_KieuPhong;
     private javax.swing.JTextField Text_GiaPhong;
+    private javax.swing.JTextField Text_KieuGiuong;
     private javax.swing.JTextField Text_KieuPhong;
     private javax.swing.JTextField Text_MaLoaiPhg;
+    private javax.swing.JTextField Text_MoTaLoaiPhong;
+    private javax.swing.JTextField Text_SoKhachToiDa;
+    private javax.swing.JTextField Text_TyLePhuThu;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane3;

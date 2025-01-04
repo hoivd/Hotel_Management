@@ -32,6 +32,7 @@ public class LoginForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu", "Thông báo", HEIGHT);
         }
         else{
+            
             user.setUsername(txtUsername.getText());
             user.setPassword(new String(txtPassword.getPassword()));
             User result = new UserDAO().validateUser(user);
@@ -357,6 +358,8 @@ public class LoginForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu", "Thông báo", HEIGHT);
         }
         else{
+            System.out.println(txtUsername.getText());
+            System.out.println(new String(txtPassword.getPassword()));
             user.setUsername(txtUsername.getText());
             user.setPassword(new String(txtPassword.getPassword()));
             User result = new UserDAO().validateUser(user);

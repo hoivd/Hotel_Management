@@ -42,6 +42,7 @@ public class PhieuDatPhongDAO {
         String sql = "INSERT INTO PHIEUDATPHONG(MADATPHONG, MAKH, NGAYNHAN, NGAYTRA, TTNHANPHONG, MANV,  TIENTRATRUOC, PHUPHI) VALUES(?,?,?,?,0,1,?, ?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
+            System.out.println(pdp.getTienPhong());
             ps.setInt(1, pdp.getMaDatPhong());
             ps.setInt(2, pdp.getKhachHang().getMaKH());
             ps.setDate(3, new Date(pdp.getNgayNhan().getTime()));

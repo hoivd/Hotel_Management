@@ -5,6 +5,8 @@
  */
 package Model;
 
+import DAO.KhachHangDAO;
+
 /**
  *
  * @author asus
@@ -16,7 +18,7 @@ public class KhachHang {
     private String GioiTinh;
     private String SDT;
     private int DoanhSo;
-    private String LoaiKhach;
+    private String MaLoaiKhach;
 
     public int getDoanhSo() {
         return DoanhSo;
@@ -34,13 +36,13 @@ public class KhachHang {
         this.SDT = SDT;
     }
     
-     public KhachHang(int MaKH, String TenKH, String CCCD, String GioiTinh, String SDT, String LoaiKhach) {
+     public KhachHang(int MaKH, String TenKH, String CCCD, String GioiTinh, String SDT, String MaLoaiKhach) {
         this.MaKH = MaKH;
         this.TenKH = TenKH;
         this.CCCD = CCCD;
         this.GioiTinh = GioiTinh;
         this.SDT = SDT;
-        this.LoaiKhach = LoaiKhach;
+        this.MaLoaiKhach = MaLoaiKhach;
     }
     
     public KhachHang() {
@@ -78,11 +80,20 @@ public class KhachHang {
     public void setSDT(String SDT){
         this.SDT = SDT;
     }
-    public String getLoaiKhach(){
-        return LoaiKhach;
+    public String getMaLoaiKhach(){
+        return MaLoaiKhach;
     }
-    public void setLoaiKhach(String LoaiKhach){
-        this.LoaiKhach = LoaiKhach;
+    public void setMaLoaiKhach(String MaLoaiKhach){
+        this.MaLoaiKhach = MaLoaiKhach;
     }
     
+    public String getTenLoaiKhach(){
+        String TenLoaiKhach = new KhachHangDAO().getTenLoaiKhachByMaKH(MaKH);
+        return TenLoaiKhach;
+    }
+
+    public String getTyLePhuThu(){
+        String TyLePhuThu = new KhachHangDAO().getTyLePhuThuByMaKH(MaKH);
+        return TyLePhuThu;
+    }
 }

@@ -35,6 +35,7 @@ public class UserDAO {
                     returnUser.setPassword(rs.getString("MATKHAU"));
                     returnUser.setRole(rs.getString("QUYEN"));
                     returnUser.setMaNV(rs.getInt("MANV"));
+                    
                     return returnUser;
                 }
                 else return null;
