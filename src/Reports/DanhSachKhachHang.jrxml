@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DanhSachKhachHang" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="dbc80b10-a6d0-45be-8459-a3c096eee350">
-	<property name="ireport.zoom" value="1.24184264611831"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.zoom" value="2.420000000000001"/>
+	<property name="ireport.x" value="373"/>
+	<property name="ireport.y" value="115"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
 	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
@@ -17,14 +17,15 @@
 		<parameterDescription><![CDATA[]]></parameterDescription>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT * FROM KHACHHANG WHERE ACTIVE = 1]]>
+		<![CDATA[SELECT * FROM KHACHHANG KH JOIN LOAIKHACH L ON L.MALOAIKHACH=KH.MALOAIKHACH WHERE ACTIVE = 1]]>
 	</queryString>
 	<field name="MAKH" class="java.math.BigDecimal"/>
 	<field name="TENKH" class="java.lang.String"/>
 	<field name="CCCD" class="java.lang.String"/>
 	<field name="SDT" class="java.lang.String"/>
 	<field name="GIOITINH" class="java.lang.String"/>
-	<field name="LOAIKHACH" class="java.lang.String"/>
+	<field name="MALOAIKHACH" class="java.lang.String"/>
+	<field name="TENLOAIKHACH" class="java.lang.String"/>
 	<field name="DOANHSO" class="java.math.BigDecimal"/>
 	<field name="ACTIVE" class="java.math.BigDecimal"/>
 	<variable name="STT" class="java.lang.Integer" calculation="Sum">
@@ -68,48 +69,55 @@
 		<band splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="26" splitType="Stretch">
+		<band height="46" splitType="Stretch">
 			<staticText>
-				<reportElement style="Column header" x="50" y="8" width="109" height="18" forecolor="#000000" uuid="d3e8dfc8-604d-4550-9273-ceb58b210a3f"/>
-				<textElement>
-					<font isBold="false"/>
+				<reportElement style="Column header" x="30" y="8" width="70" height="38" forecolor="#000000" uuid="d3e8dfc8-604d-4550-9273-ceb58b210a3f"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Mã khách hàng]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="159" y="8" width="111" height="18" forecolor="#000000" uuid="ecd4b84d-6e7d-4793-a0e5-dd641975e0ec"/>
-				<textElement>
-					<font isBold="false"/>
+				<reportElement style="Column header" x="100" y="8" width="120" height="38" forecolor="#000000" uuid="ecd4b84d-6e7d-4793-a0e5-dd641975e0ec"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Tên khách hàng]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="270" y="8" width="111" height="18" forecolor="#000000" uuid="a1caaa4f-6855-4b14-ba86-18bc783b0a3d"/>
-				<textElement>
-					<font isBold="false"/>
+				<reportElement style="Column header" x="220" y="8" width="120" height="38" forecolor="#000000" uuid="db28693e-b2ee-40fe-8428-6fc8aad6270a"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[CCCD]]></text>
+				<text><![CDATA[Loại khách]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="444" y="8" width="111" height="18" forecolor="#000000" uuid="db28693e-b2ee-40fe-8428-6fc8aad6270a"/>
-				<textElement>
-					<font isBold="false"/>
-				</textElement>
-				<text><![CDATA[Số điện thoại]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="381" y="8" width="63" height="18" forecolor="#000000" uuid="1c016517-9d0a-498c-bac3-3176a43d259d"/>
-				<textElement>
-					<font isBold="false"/>
+				<reportElement style="Column header" x="340" y="8" width="35" height="38" forecolor="#000000" uuid="1c016517-9d0a-498c-bac3-3176a43d259d"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Giới tính]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="8" width="50" height="18" uuid="d844eef6-4d23-4821-a537-3e100cc465f7"/>
-				<textElement>
-					<font fontName="Times New Roman" size="14"/>
+				<reportElement x="0" y="8" width="30" height="38" uuid="d844eef6-4d23-4821-a537-3e100cc465f7"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[STT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="375" y="8" width="90" height="38" forecolor="#000000" uuid="a1caaa4f-6855-4b14-ba86-18bc783b0a3d"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CCCD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="465" y="8" width="90" height="38" forecolor="#000000" uuid="7f21442b-6307-4caa-a8bd-1a003d5e9746"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Số điện thoại]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -118,46 +126,55 @@
 			<frame>
 				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="18" uuid="79ed3b3f-741d-4361-8753-3062dd9f89a8"/>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="50" y="0" width="109" height="18" uuid="d8bad451-d246-4b85-bf10-89388a7ba43d"/>
-					<textElement>
+					<reportElement style="Detail" positionType="Float" x="30" y="0" width="70" height="18" uuid="d8bad451-d246-4b85-bf10-89388a7ba43d"/>
+					<textElement textAlignment="Center">
 						<font size="14"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{MAKH}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="159" y="0" width="111" height="18" uuid="014cccb0-fb24-4142-80ef-c7eb8470921d"/>
+					<reportElement style="Detail" positionType="Float" x="100" y="0" width="120" height="18" uuid="014cccb0-fb24-4142-80ef-c7eb8470921d"/>
 					<textElement>
 						<font size="14"/>
+						<paragraph leftIndent="5"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{TENKH}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="270" y="0" width="111" height="18" uuid="ee7d6afe-4cb0-4288-933f-dd45c711bdd7"/>
-					<textElement>
+					<reportElement style="Detail" positionType="Float" x="375" y="0" width="90" height="18" uuid="ee7d6afe-4cb0-4288-933f-dd45c711bdd7"/>
+					<textElement textAlignment="Center">
 						<font size="14"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{CCCD}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="444" y="0" width="111" height="18" uuid="cf42675b-4ee0-4283-8e29-23b0c451c014"/>
+					<reportElement style="Detail" positionType="Float" x="220" y="0" width="120" height="18" uuid="cf42675b-4ee0-4283-8e29-23b0c451c014"/>
 					<textElement>
 						<font size="14"/>
+						<paragraph leftIndent="5"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{SDT}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{TENLOAIKHACH}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="381" y="0" width="63" height="18" uuid="ce068d49-7b5b-480d-8f2c-57bedf6566e3"/>
-					<textElement>
+					<reportElement style="Detail" positionType="Float" x="340" y="0" width="35" height="18" uuid="ce068d49-7b5b-480d-8f2c-57bedf6566e3"/>
+					<textElement textAlignment="Center">
 						<font size="14"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{GIOITINH}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="0" y="0" width="50" height="18" uuid="76a9bd97-3818-427a-8d5d-8661bcf40716"/>
-					<textElement>
+					<reportElement x="0" y="0" width="30" height="18" uuid="76a9bd97-3818-427a-8d5d-8661bcf40716"/>
+					<textElement textAlignment="Center">
 						<font fontName="Times New Roman" size="14"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$V{STT}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="465" y="0" width="90" height="18" uuid="a5c1840c-0bdf-47c7-b842-6df796097dd4"/>
+					<textElement textAlignment="Center">
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{SDT}]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>
