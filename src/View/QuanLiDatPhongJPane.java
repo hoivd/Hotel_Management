@@ -51,6 +51,7 @@ public class QuanLiDatPhongJPane extends javax.swing.JPanel {
     Date date = new Date();
     
     private ThamSoDAO thamsoDAO;
+    public int soKhachToiDa;
     public double tongTiLePhuThu;
     public double tileCoc;
    
@@ -92,7 +93,7 @@ public class QuanLiDatPhongJPane extends javax.swing.JPanel {
         tilePhuThu.put(tenPhuThuKhachToiDa, giatri);
         mapPhuThu.put("Theo khách tối đa", 1);
         tblDanhSachTiLePhuThu.addRow(new Object[]{"Phụ thu khách tối đa", giatri});
-
+        
         
         showComboBox_KieuPhong();
         Table_DanhSachPhongDat.setShowHorizontalLines(true);
@@ -117,10 +118,12 @@ public class QuanLiDatPhongJPane extends javax.swing.JPanel {
     }
     
     public void showTableChiTietTTPhong(){
+        ThamSo ts = new ThamSoDAO().getThamSobyMaQD("SoKhachToiDa");
+        soKhachToiDa = Integer.parseInt(ts.getGiaTri());
         tblDanhSachPhongTrong.setRowCount(0);
         for(ThongTinPhong ttPhong : listPhongTrong){
             tblDanhSachPhongTrong.addRow(new Object[]{ttPhong.getMaPhg(), ttPhong.getKieuPhong(), ttPhong.getKieuGiuong(), 
-                ttPhong.getDonGia(), ttPhong.getSoKhachToiDa(), ttPhong.getTyLePhuThu()});          
+                ttPhong.getDonGia(), soKhachToiDa, ttPhong.getTyLePhuThu()});          
         }
     }
     
@@ -783,7 +786,7 @@ public class QuanLiDatPhongJPane extends javax.swing.JPanel {
             Double TyLePhuThu = Double.valueOf(tblDanhSachPhongTrong.getValueAt(indexTB, 5).toString());
             if (!listPhongDat.keySet().contains(selectedRoom))
             {
-                int nKhach = ShowInputDinalog(selectedKhachToiDa);
+                int nKhach = ShowInputDinalog(3);
                 if (nKhach != -1){
                     listPhongDat.put(selectedRoom, selectedPrice);
                     tblDanhSachPhongDat.addRow(new Object[]{selectedRoom, nKhach}); 
@@ -791,7 +794,7 @@ public class QuanLiDatPhongJPane extends javax.swing.JPanel {
                     Text_TongTienPhong.setText(Integer.toString(tongTienPhong));
                     Button_ThemPhongDat.setEnabled(false);
                     Button_XoaPhongDat.setEnabled(true);
-                    SoKhachVuotQua = nKhach - selectedKieuGiuong;
+                    SoKhachVuotQua = nKhach - 2;
                     Text_SoKhachTinhPhuThu.setText(String.valueOf(SoKhachVuotQua));
                     String tenTiLe = "Theo khách tối đa";
                     TyLePhuThu = TyLePhuThu * SoKhachVuotQua;

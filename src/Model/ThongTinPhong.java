@@ -16,19 +16,17 @@ public class ThongTinPhong {
     private int DonGia;
     private String MoTa;
     private int TinhTrang;
-    private int SoKhachToiDa;
     private double TyLePhuThu;
   
     public ThongTinPhong() {
     }
 
-    public ThongTinPhong(String MaPhg, String KieuPhong, int KieuGiuong, int DonGia, String MoTa, int SoKhachToiDa) {
+    public ThongTinPhong(String MaPhg, String KieuPhong, int KieuGiuong, int DonGia, String MoTa) {
         this.MaPhg = MaPhg;
         this.KieuPhong = KieuPhong;
         this.KieuGiuong = KieuGiuong;
         this.DonGia = DonGia;
         this.MoTa = MoTa;
-        this.SoKhachToiDa = SoKhachToiDa;
     }
     
     public int getTinhTrang() {
@@ -77,14 +75,6 @@ public class ThongTinPhong {
 
     public void setMoTa(String MoTa) {
         this.MoTa = MoTa;
-    }
-    
-    public int getSoKhachToiDa() {
-        return SoKhachToiDa;
-    }
-
-    public void setSoKhachToiDa(int SoKhachToiDa) {
-        this.SoKhachToiDa = SoKhachToiDa;
     }
     
     public double getTyLePhuThu(){

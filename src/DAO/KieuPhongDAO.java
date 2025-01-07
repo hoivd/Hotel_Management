@@ -17,14 +17,13 @@ public class KieuPhongDAO {
     Connection con = DataBaseConnection.getConnection();
     
     public boolean ThemKieuPhong(KieuPhong KP){
-        String sql = "INSERT INTO LOAIPHONG(MALOAIPHG, KIEUPHONG, KIEUGIUONG, DONGIA, SOKHACHTOIDA, MOTA, TYLEPHUTHU) VALUES(?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO LOAIPHONG(MALOAIPHG, KIEUPHONG, KIEUGIUONG, DONGIA, MOTA, TYLEPHUTHU) VALUES(?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, KP.getMaLoaiPhg());
             ps.setString(2, KP.getKieuPhong());
             ps.setInt(3, KP.getKieuGiuong());
             ps.setInt(4, KP.getDonGia());
-            ps.setInt(5, KP.getSoKhachToiDa());
             ps.setString(6, KP.getMoTaLoaiPhong());
             ps.setDouble(7, KP.getTyLePhuThu());
             return ps.executeUpdate() > 0;
@@ -47,7 +46,7 @@ public class KieuPhongDAO {
     }
     
     public boolean SuaKieuPhong(KieuPhong KPCu, KieuPhong KPMoi){
-        String sql = "UPDATE LOAIPHONG SET MALOAIPHG = ?, KIEUPHONG = ?, KIEUGIUONG = ?, DONGIA = ?, SOKHACHTOIDA = ?, MOTA = ?, TYLEPHUTHU = ? WHERE MALOAIPHG = ?";
+        String sql = "UPDATE LOAIPHONG SET MALOAIPHG = ?, KIEUPHONG = ?, KIEUGIUONG = ?, DONGIA = ?, MOTA = ?, TYLEPHUTHU = ? WHERE MALOAIPHG = ?";
         try {
             System.out.println(KPMoi.getTyLePhuThu());
             PreparedStatement ps = con.prepareStatement(sql);
@@ -55,7 +54,6 @@ public class KieuPhongDAO {
             ps.setString(2, KPMoi.getKieuPhong());
             ps.setInt(3, KPMoi.getKieuGiuong());
             ps.setInt(4, KPMoi.getDonGia());
-            ps.setInt(5, KPMoi.getSoKhachToiDa());
             ps.setString(6, KPMoi.getMoTaLoaiPhong());
             ps.setDouble(7, KPMoi.getTyLePhuThu());
             ps.setString(8, KPCu.getMaLoaiPhg());
@@ -68,7 +66,7 @@ public class KieuPhongDAO {
     
     public ArrayList<KieuPhong> getListKieuPhong(){
         ArrayList<KieuPhong> listKieuPhong = new ArrayList<>();
-        String sql = "SELECT MALOAIPHG, KIEUPHONG, KIEUGIUONG, DONGIA, SOKHACHTOIDA, MOTA, TYLEPHUTHU FROM LOAIPHONG";
+        String sql = "SELECT MALOAIPHG, KIEUPHONG, KIEUGIUONG, DONGIA, MOTA, TYLEPHUTHU FROM LOAIPHONG";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -78,7 +76,6 @@ public class KieuPhongDAO {
                 KP.setKieuPhong(rs.getString("KieuPhong"));
                 KP.setKieuGiuong(rs.getInt("KieuGiuong"));
                 KP.setDonGia(rs.getInt("DonGia"));
-                KP.setSoKhachToiDa(rs.getInt("SOKHACHTOIDA"));
                 KP.setMoTaLoaiPhong(rs.getString("MOTA"));
                 KP.setTyLePhuThu(rs.getDouble("TYLEPHUTHU"));
                 listKieuPhong.add(KP);

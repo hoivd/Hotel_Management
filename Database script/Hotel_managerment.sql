@@ -255,7 +255,6 @@ create table LOAIPHONG
    KIEUGIUONG           INTEGER,
    MOTA                 VARCHAR2(100),
    DONGIA               NUMBER(19,0),
-   SOKHACHTOIDA         NUMBER(5),
    TYLEPHUTHU           NUMBER(19,2)         DEFAULT 0,
    constraint PK_LOAIPHONG primary key (MALOAIPHG)
 );
@@ -599,20 +598,6 @@ end getAvailableRoom;
 /*==========================================================================================================*/
 /*=============================================CREATE TRIGGERS==============================================*/
 /*==========================================================================================================*/
-
-/*==============================================================*/
-/* Trigger:   trg_check_sokhachtoida                            */
-/*==============================================================*/
-CREATE OR REPLACE TRIGGER trg_check_sokhachtoida
-BEFORE INSERT OR UPDATE ON LOAIPHONG
-FOR EACH ROW
-BEGIN
-    IF :NEW.KIEUGIUONG > :NEW.SOKHACHTOIDA THEN
-        RAISE_APPLICATION_ERROR(-20001, 'Số khách tối đa phải lớn hơn kiểu giường.');
-    END IF;
-END;
-/
-
 
 
 /*==============================================================*/
@@ -1171,6 +1156,7 @@ END INSERT_DON_DV;
 /*==================================INSERT VALUE===================================*/
 
 INSERT INTO THAMSO (MATS, TENTS, GIATRI, ACTIVE) VALUES ('TiLeTraTruoc', 'Tỉ lệ trả trước', 0.5, 1);
+INSERT INTO THAMSO (MATS, TENTS, GIATRI, ACTIVE) VALUES ('SoKhachToiDa', 'Số khách tối đa', 3, 1);
 
 
 INSERT INTO LOAIKHACH (MALOAIKHACH, TENLOAIKHACH, TYLEPHUTHU) VALUES ('NN', 'Khách nước ngoài', 0.25);
@@ -1212,15 +1198,15 @@ insert into DANHMUCDICHVU(TENDV,DONGIA) values ( 'Karaoke', 100000);
 insert into DANHMUCDICHVU(TENDV,DONGIA) values ( 'Gym', 100000);
 insert into DANHMUCDICHVU(TENDV,DONGIA) values ( 'Sử dụng hồ bơi', 20000);
 
-insert into LOAIPHONG(MALOAIPHG, KIEUPHONG, KIEUGIUONG, MOTA,  DONGIA, TYLEPHUTHU, SOKHACHTOIDA) values ('LP-STD01','Standard', 1, 'Phong tieu chuan - Giuong don', 300000, 0.25, 5);
-insert into LOAIPHONG(MALOAIPHG, KIEUPHONG, KIEUGIUONG, MOTA,  DONGIA, TYLEPHUTHU, SOKHACHTOIDA) values ('LP-STD02','Standard', 2, 'Phong tieu chuan - Giuong doi nho', 400000, 0.25, 5);
-insert into LOAIPHONG(MALOAIPHG, KIEUPHONG, KIEUGIUONG, MOTA,  DONGIA, TYLEPHUTHU, SOKHACHTOIDA) values ('LP-STD03','Standard', 4, 'Phong tieu chuan - Giuong doi lon', 500000, 0.25, 5);
-insert into LOAIPHONG(MALOAIPHG, KIEUPHONG, KIEUGIUONG, MOTA,  DONGIA, TYLEPHUTHU, SOKHACHTOIDA) values ('LP-SUP01','Superior', 1, 'Phong cao cap Superior - Giuong don', 1000000, 0.25, 5);
-insert into LOAIPHONG(MALOAIPHG, KIEUPHONG, KIEUGIUONG, MOTA,  DONGIA, TYLEPHUTHU, SOKHACHTOIDA) values ('LP-SUP02','Superior', 4, 'Phong cao cap Superior - Giuong doi lon', 1200000, 0.25, 5);
-insert into LOAIPHONG(MALOAIPHG, KIEUPHONG, KIEUGIUONG, MOTA,  DONGIA, TYLEPHUTHU, SOKHACHTOIDA) values ('LP-DLX01','Deluxe', 2, 'Phong cao cap Deluxe - Giuong don nho', 1500000, 0.25, 5);
-insert into LOAIPHONG(MALOAIPHG, KIEUPHONG, KIEUGIUONG, MOTA,  DONGIA, TYLEPHUTHU, SOKHACHTOIDA) values ('LP-DLX02','Deluxe', 4, 'Phong cao cap Deluxe - Giuong doi lon', 1800000, 0.25, 5);
-insert into LOAIPHONG(MALOAIPHG, KIEUPHONG, KIEUGIUONG, MOTA,  DONGIA, TYLEPHUTHU, SOKHACHTOIDA) values ('LP-SUT01','Suite', 1, 'Phong cao cap Suite - Giuong don lon', 2000000, 0.25, 5);
-insert into LOAIPHONG(MALOAIPHG, KIEUPHONG, KIEUGIUONG, MOTA,  DONGIA, TYLEPHUTHU, SOKHACHTOIDA) values ('LP-SUT02','Suite', 2, 'Phong cao cap Suite - Giuong doi lon', 2500000, 0.25, 5);
+insert into LOAIPHONG(MALOAIPHG, KIEUPHONG, KIEUGIUONG, MOTA,  DONGIA, TYLEPHUTHU) values ('LP-STD01','Standard', 1, 'Phong tieu chuan - Giuong don', 300000, 0.25);
+insert into LOAIPHONG(MALOAIPHG, KIEUPHONG, KIEUGIUONG, MOTA,  DONGIA, TYLEPHUTHU) values ('LP-STD02','Standard', 2, 'Phong tieu chuan - Giuong doi nho', 400000, 0.25);
+insert into LOAIPHONG(MALOAIPHG, KIEUPHONG, KIEUGIUONG, MOTA,  DONGIA, TYLEPHUTHU) values ('LP-STD03','Standard', 4, 'Phong tieu chuan - Giuong doi lon', 500000, 0.25);
+insert into LOAIPHONG(MALOAIPHG, KIEUPHONG, KIEUGIUONG, MOTA,  DONGIA, TYLEPHUTHU) values ('LP-SUP01','Superior', 1, 'Phong cao cap Superior - Giuong don', 1000000, 0.25);
+insert into LOAIPHONG(MALOAIPHG, KIEUPHONG, KIEUGIUONG, MOTA,  DONGIA, TYLEPHUTHU) values ('LP-SUP02','Superior', 4, 'Phong cao cap Superior - Giuong doi lon', 1200000, 0.25);
+insert into LOAIPHONG(MALOAIPHG, KIEUPHONG, KIEUGIUONG, MOTA,  DONGIA, TYLEPHUTHU) values ('LP-DLX01','Deluxe', 2, 'Phong cao cap Deluxe - Giuong don nho', 1500000, 0.25);
+insert into LOAIPHONG(MALOAIPHG, KIEUPHONG, KIEUGIUONG, MOTA,  DONGIA, TYLEPHUTHU) values ('LP-DLX02','Deluxe', 4, 'Phong cao cap Deluxe - Giuong doi lon', 1800000, 0.25);
+insert into LOAIPHONG(MALOAIPHG, KIEUPHONG, KIEUGIUONG, MOTA,  DONGIA, TYLEPHUTHU) values ('LP-SUT01','Suite', 1, 'Phong cao cap Suite - Giuong don lon', 2000000, 0.25);
+insert into LOAIPHONG(MALOAIPHG, KIEUPHONG, KIEUGIUONG, MOTA,  DONGIA, TYLEPHUTHU) values ('LP-SUT02','Suite', 2, 'Phong cao cap Suite - Giuong doi lon', 2500000, 0.25);
 
 insert into PHONG (MAPHG, MALOAIPHG,MOTA,TINHTRANG) values ('01-STD', 'LP-STD01', 'Phong tieu chuan - Giuong don - Tang 1', 1);
 insert into PHONG (MAPHG, MALOAIPHG,MOTA,TINHTRANG) values ('02-STD', 'LP-STD01', 'Phong tieu chuan - Giuong don - Tang 1', 0);

@@ -14,19 +14,17 @@ public class KieuPhong {
     private String KieuPhong;
     private int KieuGiuong;
     private int DonGia;
-    private int SoKhachToiDa;
     private double TyLePhuThu;
     private String MoTaLoaiPhong;
 
     public KieuPhong() {
     }
 
-    public KieuPhong(String MaLoaiPhg, String KieuPhong, int KieuGiuong, int DonGia, int SoKhachToiDa,double TyLePhuThu, String MoTaLoaiPhong) {
+    public KieuPhong(String MaLoaiPhg, String KieuPhong, int KieuGiuong, int DonGia,double TyLePhuThu, String MoTaLoaiPhong) {
         this.MaLoaiPhg = MaLoaiPhg;
         this.KieuPhong = KieuPhong;
         this.KieuGiuong = KieuGiuong;
         this.DonGia = DonGia;
-        this.SoKhachToiDa = SoKhachToiDa;
         this.MoTaLoaiPhong = MoTaLoaiPhong;
         this.TyLePhuThu = TyLePhuThu;
     }
@@ -61,14 +59,6 @@ public class KieuPhong {
 
     public void setDonGia(int DonGia) {
         this.DonGia = DonGia;
-    }
-    
-    public int getSoKhachToiDa() {
-        return SoKhachToiDa;
-    }
-
-    public void setSoKhachToiDa(int SoKhachToiDa) {
-        this.SoKhachToiDa = SoKhachToiDa;
     }
     
     public String getMoTaLoaiPhong(){

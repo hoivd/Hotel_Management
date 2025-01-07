@@ -30,7 +30,7 @@ public class KieuPhongJFrame extends javax.swing.JFrame {
         initComponents();
         listKieuPhong = new KieuPhongDAO().getListKieuPhong();
         tblKieuPhong = (DefaultTableModel) Table_KieuPhong.getModel();
-        tblKieuPhong.setColumnIdentifiers(new Object[]{"STT","Mã loại phòng", "Kiểu phòng", "Kiểu giường", "Giá phòng", "Số khách tối đa", "Tỷ lệ phụ thu", "Mô tả"});
+        tblKieuPhong.setColumnIdentifiers(new Object[]{"STT","Mã loại phòng", "Kiểu phòng", "Kiểu giường", "Giá phòng", "Tỷ lệ phụ thu", "Mô tả"});
         showTableChiTietDV();
         Button_SuaKieuPhong.setEnabled(false);
         Button_XoaKieuPhong.setEnabled(false);
@@ -65,8 +65,6 @@ public class KieuPhongJFrame extends javax.swing.JFrame {
         Button_XoaKieuPhong = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         Text_MaLoaiPhg = new javax.swing.JTextField();
-        Text_SoKhachToiDa = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         Text_MoTaLoaiPhong = new javax.swing.JTextField();
         Text_KieuGiuong = new javax.swing.JTextField();
@@ -167,16 +165,6 @@ public class KieuPhongJFrame extends javax.swing.JFrame {
             }
         });
 
-        Text_SoKhachToiDa.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        Text_SoKhachToiDa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Text_SoKhachToiDaActionPerformed(evt);
-            }
-        });
-
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel9.setText("Số khách tối đa ");
-
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel10.setText("Mô tả loại phòng");
 
@@ -230,15 +218,11 @@ public class KieuPhongJFrame extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createSequentialGroup()
                             .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(29, 29, 29)
-                            .addComponent(Text_TyLePhuThu, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE))
+                            .addComponent(Text_TyLePhuThu))
                         .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(29, 29, 29)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(Text_GiaPhong, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
-                                .addComponent(Text_SoKhachToiDa, javax.swing.GroupLayout.Alignment.TRAILING)))))
+                            .addComponent(Text_GiaPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -265,17 +249,13 @@ public class KieuPhongJFrame extends javax.swing.JFrame {
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Text_SoKhachToiDa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Text_TyLePhuThu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Text_MoTaLoaiPhong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
 
         Table_KieuPhong.setModel(new javax.swing.table.DefaultTableModel(
@@ -283,7 +263,7 @@ public class KieuPhongJFrame extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã loại  phòng", "Kiểu phòng", "Kiểu giường", "Giá", "Số khách tối đa", "Tỷ lệ phụ thu", "Mô tả loại phòng"
+                "Mã loại  phòng", "Kiểu phòng", "Kiểu giường", "Giá", "Tỷ lệ phụ thu", "Mô tả loại phòng"
             }
         ));
         Table_KieuPhong.setShowHorizontalLines(true);
@@ -302,9 +282,7 @@ public class KieuPhongJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, 0)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 767, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 767, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -313,7 +291,7 @@ public class KieuPhongJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -323,7 +301,7 @@ public class KieuPhongJFrame extends javax.swing.JFrame {
         int i = 1;
         ArrayList<KieuPhong> listKieuPhong = new KieuPhongDAO().getListKieuPhong();
         for(KieuPhong KP : listKieuPhong){
-            tblKieuPhong.addRow(new Object[]{i++, KP.getMaLoaiPhg(), KP.getKieuPhong(), KP.getKieuGiuong(), KP.getDonGia(), KP.getSoKhachToiDa(),KP.getTyLePhuThu(), KP.getMoTaLoaiPhong()});
+            tblKieuPhong.addRow(new Object[]{i++, KP.getMaLoaiPhg(), KP.getKieuPhong(), KP.getKieuGiuong(), KP.getDonGia(), KP.getTyLePhuThu(), KP.getMoTaLoaiPhong()});
         }
     }
     
@@ -333,13 +311,12 @@ public class KieuPhongJFrame extends javax.swing.JFrame {
     }
     
     private void Button_ThemKieuPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_ThemKieuPhongActionPerformed
-        if(new KieuPhongController().KtraJtextKieuPhong(Text_MaLoaiPhg, Text_KieuGiuong, Text_KieuPhong, Text_GiaPhong, Text_SoKhachToiDa)){
+        if(new KieuPhongController().KtraJtextKieuPhong(Text_MaLoaiPhg, Text_KieuGiuong, Text_KieuPhong, Text_GiaPhong)){
             KieuPhong KP = new KieuPhong();
             KP.setMaLoaiPhg(Text_MaLoaiPhg.getText());
             KP.setKieuPhong(Text_KieuPhong.getText());
             KP.setKieuGiuong(Integer.parseInt(Text_KieuGiuong.getText()));
             KP.setDonGia(Integer.parseInt(Text_GiaPhong.getText()));
-            KP.setSoKhachToiDa(Integer.parseInt(Text_SoKhachToiDa.getText()));
             KP.setMoTaLoaiPhong(Text_MoTaLoaiPhong.getText());
             KP.setTyLePhuThu(Double.parseDouble(Text_TyLePhuThu.getText()));
             if(new KieuPhongDAO().ThemKieuPhong(KP)){
@@ -358,15 +335,14 @@ public class KieuPhongJFrame extends javax.swing.JFrame {
         String KieuPhong = tblKieuPhong.getValueAt(index, 2).toString();
         int KieuGiuong = (int) tblKieuPhong.getValueAt(index, 3);
         int GiaPhong = (int) tblKieuPhong.getValueAt(index, 4);
-        int SoKhachToiDa = (int) tblKieuPhong.getValueAt(index, 5);
-        double TyLePhuThu = (double) tblKieuPhong.getValueAt(index, 6);
-        String MoTaLoaiPhong = tblKieuPhong.getValueAt(index, 7).toString();
-        return new KieuPhong(MaLoaiPhg,KieuPhong,KieuGiuong,GiaPhong,SoKhachToiDa, TyLePhuThu, MoTaLoaiPhong);
+        double TyLePhuThu = (double) tblKieuPhong.getValueAt(index, 5);
+        String MoTaLoaiPhong = tblKieuPhong.getValueAt(index, 6).toString();
+        return new KieuPhong(MaLoaiPhg,KieuPhong,KieuGiuong,GiaPhong, TyLePhuThu, MoTaLoaiPhong);
     }
     
     private void Button_SuaKieuPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_SuaKieuPhongActionPerformed
         
-        if(new KieuPhongController().KtraJtextKieuPhong(Text_MaLoaiPhg, Text_KieuGiuong, Text_KieuPhong, Text_GiaPhong,Text_SoKhachToiDa)){
+        if(new KieuPhongController().KtraJtextKieuPhong(Text_MaLoaiPhg, Text_KieuGiuong, Text_KieuPhong, Text_GiaPhong)){
             int indexTB = Table_KieuPhong.getSelectedRow();
             KieuPhong KPCu = returnTTKieuPhong(indexTB);
             int ret = JOptionPane.showConfirmDialog(null,"Bạn có muốn sửa dữ liệu?", "Sữa dữ liệu", JOptionPane.YES_NO_OPTION);
@@ -374,7 +350,6 @@ public class KieuPhongJFrame extends javax.swing.JFrame {
                 KieuPhong KPMoi = new KieuPhong(Text_MaLoaiPhg.getText(),Text_KieuPhong.getText(),
                                                 Integer.parseInt((String) Text_KieuGiuong.getText()),
                                                 Integer.parseInt(Text_GiaPhong.getText()),
-                                                Integer.parseInt(Text_SoKhachToiDa.getText()),
                                                 Double.parseDouble(Text_TyLePhuThu.getText()),
                                                 Text_MoTaLoaiPhong.getText());
                 if(indexTB < tblKieuPhong.getRowCount() && indexTB >= 0){
@@ -383,9 +358,8 @@ public class KieuPhongJFrame extends javax.swing.JFrame {
                         tblKieuPhong.setValueAt(Text_KieuPhong, indexTB, 2);
                         tblKieuPhong.setValueAt(Text_KieuGiuong, indexTB, 3);
                         tblKieuPhong.setValueAt(Text_GiaPhong, indexTB, 4);
-                        tblKieuPhong.setValueAt(Text_SoKhachToiDa, indexTB, 5);
-                        tblKieuPhong.setValueAt(Text_TyLePhuThu, indexTB, 6);
-                        tblKieuPhong.setValueAt(Text_MoTaLoaiPhong, indexTB, 7);
+                        tblKieuPhong.setValueAt(Text_TyLePhuThu, indexTB, 5);
+                        tblKieuPhong.setValueAt(Text_MoTaLoaiPhong, indexTB, 6);
                         JOptionPane.showMessageDialog(this, "Sửa thành công.");
                         updateTable();
                         clearJTextKieuPhong();
@@ -409,7 +383,6 @@ public class KieuPhongJFrame extends javax.swing.JFrame {
         Text_MaLoaiPhg.setText("");
         Text_KieuPhong.setText("");
         Text_GiaPhong.setText("");
-        Text_SoKhachToiDa.setText("");
         Text_MoTaLoaiPhong.setText("");
         Text_KieuGiuong.setText("");
         Text_TyLePhuThu.setText("");
@@ -442,15 +415,10 @@ public class KieuPhongJFrame extends javax.swing.JFrame {
             Text_KieuPhong.setText(tblKieuPhong.getValueAt(indexTB, 2).toString());
             Text_KieuGiuong.setText(tblKieuPhong.getValueAt(indexTB, 3).toString());
             Text_GiaPhong.setText(tblKieuPhong.getValueAt(indexTB, 4).toString());
-            Text_SoKhachToiDa.setText(tblKieuPhong.getValueAt(indexTB, 5).toString());
-            Text_TyLePhuThu.setText(tblKieuPhong.getValueAt(indexTB,6).toString());
-            Text_MoTaLoaiPhong.setText(tblKieuPhong.getValueAt(indexTB, 7).toString());
+            Text_TyLePhuThu.setText(tblKieuPhong.getValueAt(indexTB,5).toString());
+            Text_MoTaLoaiPhong.setText(tblKieuPhong.getValueAt(indexTB, 6).toString());
         }
     }//GEN-LAST:event_Table_KieuPhongMouseClicked
-
-    private void Text_SoKhachToiDaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Text_SoKhachToiDaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Text_SoKhachToiDaActionPerformed
 
     private void Text_MoTaLoaiPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Text_MoTaLoaiPhongActionPerformed
         // TODO add your handling code here:
@@ -510,7 +478,6 @@ public class KieuPhongJFrame extends javax.swing.JFrame {
     private javax.swing.JTextField Text_KieuPhong;
     private javax.swing.JTextField Text_MaLoaiPhg;
     private javax.swing.JTextField Text_MoTaLoaiPhong;
-    private javax.swing.JTextField Text_SoKhachToiDa;
     private javax.swing.JTextField Text_TyLePhuThu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -518,7 +485,6 @@ public class KieuPhongJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane3;
