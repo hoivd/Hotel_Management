@@ -156,7 +156,6 @@ create table DANHMUCDICHVU
    MADV                 NUMBER(9)            default MADV_SEQ.NEXTVAL           not null,
    TENDV                VARCHAR2(30),
    DONGIA               NUMBER(19,0),
-   DONVI                VARCHAR2(10),
    ACTIVE               SMALLINT            DEFAULT 1,
    constraint PK_DANHMUCDICHVU primary key (MADV)
 );
@@ -1157,6 +1156,7 @@ END INSERT_DON_DV;
 
 INSERT INTO THAMSO (MATS, TENTS, GIATRI, ACTIVE) VALUES ('TiLeTraTruoc', 'Tỉ lệ trả trước', 0.5, 1);
 INSERT INTO THAMSO (MATS, TENTS, GIATRI, ACTIVE) VALUES ('SoKhachToiDa', 'Số khách tối đa', 3, 1);
+INSERT INTO THAMSO (MATS, TENTS, GIATRI, ACTIVE) VALUES ('SoKhachBatDauTinhPhuThu', 'Số khách bắt đầu tính phụ thu', 2, 1);
 
 
 INSERT INTO LOAIKHACH (MALOAIKHACH, TENLOAIKHACH, TYLEPHUTHU) VALUES ('NN', 'Khách nước ngoài', 0.25);

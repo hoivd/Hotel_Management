@@ -52,6 +52,7 @@ public class QuanLiDatPhongJPane extends javax.swing.JPanel {
     
     private ThamSoDAO thamsoDAO;
     public int soKhachToiDa;
+    public int soKhachBatDauTinhPhuThu;
     public double tongTiLePhuThu;
     public double tileCoc;
    
@@ -94,7 +95,10 @@ public class QuanLiDatPhongJPane extends javax.swing.JPanel {
         mapPhuThu.put("Theo khách tối đa", 1);
         tblDanhSachTiLePhuThu.addRow(new Object[]{"Phụ thu khách tối đa", giatri});
         
-        
+        ThamSo ts = new ThamSoDAO().getThamSobyMaQD("SoKhachToiDa");
+        soKhachToiDa = Integer.parseInt(ts.getGiaTri());
+        ThamSo ts2 = new ThamSoDAO().getThamSobyMaQD("SoKhachBatDauTinhPhuThu");
+        soKhachBatDauTinhPhuThu = Integer.parseInt(ts2.getGiaTri());
         showComboBox_KieuPhong();
         Table_DanhSachPhongDat.setShowHorizontalLines(true);
         Table_DanhSachPhongTrong.setShowHorizontalLines(true);
@@ -118,8 +122,6 @@ public class QuanLiDatPhongJPane extends javax.swing.JPanel {
     }
     
     public void showTableChiTietTTPhong(){
-        ThamSo ts = new ThamSoDAO().getThamSobyMaQD("SoKhachToiDa");
-        soKhachToiDa = Integer.parseInt(ts.getGiaTri());
         tblDanhSachPhongTrong.setRowCount(0);
         for(ThongTinPhong ttPhong : listPhongTrong){
             tblDanhSachPhongTrong.addRow(new Object[]{ttPhong.getMaPhg(), ttPhong.getKieuPhong(), ttPhong.getKieuGiuong(), 
@@ -794,7 +796,7 @@ public class QuanLiDatPhongJPane extends javax.swing.JPanel {
                     Text_TongTienPhong.setText(Integer.toString(tongTienPhong));
                     Button_ThemPhongDat.setEnabled(false);
                     Button_XoaPhongDat.setEnabled(true);
-                    SoKhachVuotQua = nKhach - 2;
+                    SoKhachVuotQua = nKhach - soKhachBatDauTinhPhuThu;
                     Text_SoKhachTinhPhuThu.setText(String.valueOf(SoKhachVuotQua));
                     String tenTiLe = "Theo khách tối đa";
                     TyLePhuThu = TyLePhuThu * SoKhachVuotQua;
