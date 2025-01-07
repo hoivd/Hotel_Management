@@ -24,12 +24,9 @@ import net.sf.jasperreports.view.JasperViewer;
 public class QuanLiThamSoJPane extends javax.swing.JPanel {
     private ArrayList<ThamSo> listThamSo;
     DefaultTableModel tblThamSo;
-//    static int curr_MaKH;
     public QuanLiThamSoJPane() {       
         initComponents();
         ThamSoDAO tsDAO = new ThamSoDAO();
-//        curr_MaKH =khDAO.getCurrentMaKH();
-        //Text_MaKhachHang.setText(Integer.toString(curr_MaKH));
         listThamSo = tsDAO.getListThamSo();
         tblThamSo = (DefaultTableModel) Table_ThamSo.getModel();
         tblThamSo.setColumnIdentifiers(new Object[]{"STT", "Mã tham số", "Tên tham số", "Giá Trị"});
@@ -279,28 +276,15 @@ public class QuanLiThamSoJPane extends javax.swing.JPanel {
     private void Table_ThamSoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Table_ThamSoMouseClicked
         ListSelectionModel listTable_KhachHang = Table_ThamSo.getSelectionModel();
         listTable_KhachHang.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-//        Button_ThemKhachHang.setEnabled(false);
         Button_SuaThamSo.setEnabled(true);
-//        Button_XoaKhachHang.setEnabled(true);
         int indexTB = Table_ThamSo.getSelectedRow();
         if (indexTB < tblThamSo.getRowCount() && indexTB >= 0){
             Text_GiaTri.setEditable(true);
             Text_MaThamSo.setText(tblThamSo.getValueAt(indexTB, 1).toString());
-//            TextThamSo.setText(tblThamSo.getValueAt(indexTB, 2).toString());
-//            Text_CCCD.setText(tblThamSo.getValueAt(indexTB, 3).toString());
             ComboBox_ThamSo.setSelectedItem(tblThamSo.getValueAt(indexTB, 2));
             Text_GiaTri.setText(tblThamSo.getValueAt(indexTB, 3).toString());
         }
     }//GEN-LAST:event_Table_ThamSoMouseClicked
-
-//    public KhachHang returnKhachHang(int index){       
-//        int MaKH = Integer.parseInt(tblKhachHang.getValueAt(index, 1).toString());
-//        String HoTen = tblKhachHang.getValueAt(index, 2).toString();
-//        String CCCD = tblKhachHang.getValueAt(index, 3).toString();
-//        String GioiTinh = tblKhachHang.getValueAt(index, 4).toString();
-//        String SDT = tblKhachHang.getValueAt(index, 5).toString();      
-//        return new KhachHang(MaKH,HoTen,CCCD,GioiTinh,SDT);
-//    }
     
     private void Button_SuaThamSoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_SuaThamSoActionPerformed
         if(new ThamSoController().KtraJtextThamSo(Text_GiaTri)){
@@ -314,9 +298,6 @@ public class QuanLiThamSoJPane extends javax.swing.JPanel {
                 if(new ThamSoDAO().SuaThamSo(ts)){
                     if(indexTB < tblThamSo.getRowCount() && indexTB >= 0){
                         tblThamSo.setValueAt(Text_GiaTri.getText(), indexTB, 3);
-//                        tblThamSo.setValueAt(Text_CCCD.getText(), indexTB, 3);
-//                        tblThamSo.setValueAt(ComboBox_GioiTinh.getSelectedItem(), indexTB, 4);
-//                        tblThamSo.setValueAt(Text_SDT.getText(), indexTB, 5);
                         JOptionPane.showMessageDialog(this, "Sửa thành công.");  
                         clearJTextThamSo();
                     } else {
@@ -328,15 +309,12 @@ public class QuanLiThamSoJPane extends javax.swing.JPanel {
     }//GEN-LAST:event_Button_SuaThamSoActionPerformed
 
     private void Button_LamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_LamMoiActionPerformed
-//        Button_ThemKhachHang.setEnabled(true);
-//        Button_XoaKhachHang.setEnabled(false);
         Button_SuaThamSo.setEnabled(false);
         clearJTextThamSo();
         updateTable();
     }//GEN-LAST:event_Button_LamMoiActionPerformed
     
     private void ComboBox_ThamSoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBox_ThamSoActionPerformed
-        // TODO add your handling code here:
         String selectedItem = (String)ComboBox_ThamSo.getSelectedItem();
         listThamSo = new ThamSoDAO().getListThamSo();
         for (int row = 0; row < Table_ThamSo.getRowCount(); row++) {
@@ -354,7 +332,6 @@ public class QuanLiThamSoJPane extends javax.swing.JPanel {
     }//GEN-LAST:event_ComboBox_ThamSoActionPerformed
 
     private void ComboBox_ThamSoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ComboBox_ThamSoMouseClicked
-        // TODO add your handling code here:
         Text_GiaTri.setEditable(false);
         Button_SuaThamSo.setEnabled(false);
     }//GEN-LAST:event_ComboBox_ThamSoMouseClicked
@@ -369,16 +346,11 @@ public class QuanLiThamSoJPane extends javax.swing.JPanel {
     
     
     public void clearJTextThamSo(){
-//        Text_MaKhachHang.setText(Integer.toString(curr_MaKH));
         Text_GiaTri.setText("");
         Text_MaThamSo.setText("");
         ComboBox_ThamSo.setSelectedItem("Khác");
     }
-//    public void showResult(){
-//        //int i = 1;
-//        KhachHang kh = listKhachHang.get(listKhachHang.size() - 1);
-//        tblKhachHang.addRow(new Object[]{ kh.getMaKH(), kh.getTenKH(), kh.getCCCD(), kh.getGioiTinh(), kh.getSDT()});
-//    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Button_LamMoi;

@@ -19,7 +19,6 @@ public class LoginController {
     public LoginController(User user){
         if(user.getRole().equals("user"))
         {
-//            new AdminJFrame().setVisible(true);
             MainJFrame frame = new MainJFrame();
             frame.setExtendedState( JFrame.MAXIMIZED_BOTH);
             frame.setUser(user);

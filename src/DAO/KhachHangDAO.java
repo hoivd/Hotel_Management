@@ -33,7 +33,6 @@ public class KhachHangDAO {
         String sql = "INSERT INTO KHACHHANG(TenKH, CCCD, GioiTinh, SDT, MALOAIKHACH) VALUES(?,?,?,?,?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-//            ps.setInt(1, kh.getMaKH());
             ps.setString(1, kh.getTenKH());
             ps.setString(2, kh.getCCCD());
             ps.setString(3, kh.getGioiTinh());
@@ -77,11 +76,6 @@ public class KhachHangDAO {
 
     public ArrayList<KhachHang> getFilterListKhachHang(KhachHang khachhangInput){
         ArrayList<KhachHang> list = new ArrayList<>();
-        System.out.println(khachhangInput.getTenKH());
-        System.out.println(khachhangInput.getCCCD());
-        System.out.println(khachhangInput.getSDT());
-        System.out.println(khachhangInput.getGioiTinh());
-        System.out.println(khachhangInput.getMaLoaiKhach());
         String sql = "SELECT MAKH, TENKH, CCCD, GIOITINH, SDT, DOANHSO, MALOAIKHACH\n" +
                     "FROM KHACHHANG\n" +
                     "WHERE UPPER(TENKH) LIKE ? AND UPPER(CCCD) LIKE ? AND UPPER(SDT) LIKE ? AND UPPER(GIOITINH) LIKE ? AND UPPER(MALOAIKHACH) LIKE ? AND ACTIVE = 1 ";

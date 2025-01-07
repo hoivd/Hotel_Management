@@ -21,7 +21,6 @@ public class DanhMucDichVuDAO {
         String sql = "INSERT INTO DANHMUCDICHVU(TenDV, DonGia) VALUES(?,?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            //ps.setInt(1, DichVu.getMaDV());
             ps.setString(1, DichVu.getTenDV());
             ps.setInt(2, DichVu.getDonGia());
             return ps.executeUpdate() > 0;

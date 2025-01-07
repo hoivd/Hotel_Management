@@ -27,12 +27,10 @@ public class QuanLiKhachHangUserJPane extends javax.swing.JPanel {
     private ArrayList<KhachHang> listKhachHang;
     private ArrayList<KieuKhach> listKieuKhach;
     DefaultTableModel tblKhachHang;
-//    static int curr_MaKH;
+
     public QuanLiKhachHangUserJPane() {       
         initComponents();
         KhachHangDAO khDAO = new KhachHangDAO();
-//        curr_MaKH =khDAO.getCurrentMaKH();
-        //Text_MaKhachHang.setText(Integer.toString(curr_MaKH));
         listKhachHang = khDAO.getListKhachHang();
         tblKhachHang = (DefaultTableModel) Table_KhachHang.getModel();
         tblKhachHang.setColumnIdentifiers(new Object[]{"STT","Mã khách hàng", "Tên khách hàng","Loại khách" ,  "Giới tính","CMND/CCCD", "Số điện thoại","Doanh số"});
@@ -373,10 +371,8 @@ public class QuanLiKhachHangUserJPane extends javax.swing.JPanel {
             if(khDAO.ThemKhachHang(kh)){
                 JOptionPane.showMessageDialog(this, "Thêm thành công.");
                 listKhachHang = khDAO.getListKhachHang();
-    //            curr_MaKH = khDAO.getCurrentMaKH();
                 updateTable();
                 clearJTextKhachHang();
-    //            showResult();
             } else {
                 JOptionPane.showMessageDialog(this, "Thêm thất bại.");
             }
@@ -503,7 +499,6 @@ public class QuanLiKhachHangUserJPane extends javax.swing.JPanel {
     }//GEN-LAST:event_Button_InDSKHActionPerformed
      
     public void clearJTextKhachHang(){
-//        Text_MaKhachHang.setText(Integer.toString(curr_MaKH));
         Text_MaKhachHang.setText("");
         Text_HoTen.setText("");
         Text_CCCD.setText("");
@@ -511,7 +506,6 @@ public class QuanLiKhachHangUserJPane extends javax.swing.JPanel {
         Text_SDT.setText("");
     }
     public void showResult(){
-        //int i = 1;
         KhachHang kh = listKhachHang.get(listKhachHang.size() - 1);
         tblKhachHang.addRow(new Object[]{ kh.getMaKH(), kh.getTenKH(), kh.getCCCD(), kh.getGioiTinh(), kh.getSDT()});
     }

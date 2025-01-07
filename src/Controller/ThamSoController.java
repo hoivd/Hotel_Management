@@ -18,10 +18,7 @@ public class ThamSoController {
             JOptionPane.showMessageDialog(null, "Vui lòng nhập đủ thông tin.");
             return false;
         }
-//        if(!isWordOrNot(Hoten.getText())){
-//            JOptionPane.showMessageDialog(null, "Họ tên không hợp lệ. Tên không chứa số hoặc kí tự.");
-//            return false;
-//        }
+
         if(!isNumberOrNot(GiaTri.getText())){
             JOptionPane.showMessageDialog(null, "Giá trị phải là số vui lòng nhập lại");
             return false;
@@ -30,17 +27,6 @@ public class ThamSoController {
     }
     
     private boolean isNumberOrNot(String input) {
-//        try {
-//            Long.parseLong(input);
-//        } catch (NumberFormatException e) {
-//            return false;
-//        }
-//        return true;
         return input.matches("-?\\d+(\\.\\d+)?");
     }
-    
-//    private boolean isWordOrNot(String input){
-//        return Pattern.matches("[a-zA-Z]+ ", input);
-//    }
-        
 }

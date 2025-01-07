@@ -32,7 +32,5 @@ public class DataBaseConnection {
             return null;
         }
     }
-    
-
 }
  

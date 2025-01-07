@@ -372,8 +372,6 @@ public class LoginForm extends javax.swing.JFrame {
                 if (java.util.Arrays.equals(txtPassword.getPassword(),result.getPassword().toCharArray()))
                 {
                     JOptionPane.showMessageDialog(this, "Đăng nhập thành công");
-                    
-                    
                     this.dispose();
                     new LoginController(result);
                 }

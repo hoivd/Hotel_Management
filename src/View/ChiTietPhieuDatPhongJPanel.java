@@ -23,9 +23,11 @@ public class ChiTietPhieuDatPhongJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ChiTietPhieuDatPhongJPanel
      */
+    
     public ChiTietPhieuDatPhongJPanel() {
         initComponents();
     }
+    
     public void setPhieuDatPhong(int mapdp)
     {
         this.pdp =  new PhieuDatPhongDAO().getThongTinPhieuDatPhong(mapdp);
@@ -33,12 +35,13 @@ public class ChiTietPhieuDatPhongJPanel extends javax.swing.JPanel {
         Text_TienCanThanhToan.setText(Integer.toString(pdp.getTienThanhToan()));
         Text_TienKhachDua.setText(Integer.toString(pdp.getTienThanhToan()));
     }
+    
     public int getTienKhachTra()
-    {   
-        
+    {
         int tienkhachtra = Integer.parseInt(Text_TienKhachDua.getText());
         return tienkhachtra;
     }
+    
     public String getHinhThucThanhToan()
     {
         return ComboBox_HinhThucThanhToan.getSelectedItem().toString();

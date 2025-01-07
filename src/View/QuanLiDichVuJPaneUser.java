@@ -455,36 +455,15 @@ public class QuanLiDichVuJPaneUser extends javax.swing.JPanel {
     
     public void showComboBox_TenDV(){
         ArrayList<DanhMucDichVu> ttTenDV = new DanhMucDichVuDAO().getListTenDV();
-//        if(ttTenDV == null){
-//            ttTenDV = new DanhMucDichVuDAO().getListTenDV();
-//        } 
         for(DanhMucDichVu data : ttTenDV){
             ComboBox_TenDV.addItem(data.getTenDV());
         }
     }
     
-//    public void showResultChiTietDV(){
-//        DanhMucDichVu DichVu = listDichVu.get(listDichVu.size() - 1);
-//        tblDichVu.addRow(new Object[]{ DichVu.getMaDV(), DichVu.getTenDV(), DichVu.getDonGia()});
-//    }
-    
     public void UpdateTable_DichVu(){
         tblDichVu.setRowCount(0);
         showTableChiTietDV();
     }
-//    public void UpdateComboBox_TenDV(){
-//        ComboBox_TenDV.removeAllItems();
-//        showComboBox_TenDV();
-//    }
-//    public void updateThanhTien()
-//    {
-//        DanhMucDichVu d = dsDichVu.get(Text_TenDV.getText());
-//        if (d != null )
-//        {
-//            int thanhtien = d.getDonGia() * (int)Spinner_SoLuong.getValue() ;
-//            Text_ThanhTien.setText(Integer.toString(thanhtien));
-//        }
-//    }
     
     private void Button_InHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_InHoaDonActionPerformed
         String maphg = ComboBox_MaPhg.getSelectedItem().toString();
@@ -537,9 +516,7 @@ public class QuanLiDichVuJPaneUser extends javax.swing.JPanel {
 
     private void ComboBox_TenDVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBox_TenDVActionPerformed
         Spinner_SoLuong.setValue(1);
-        getDonGiaDV();
-//        updateThanhTien();
-        
+        getDonGiaDV();        
     }//GEN-LAST:event_ComboBox_TenDVActionPerformed
 
     private void Spinner_SoLuongStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_Spinner_SoLuongStateChanged
@@ -548,17 +525,11 @@ public class QuanLiDichVuJPaneUser extends javax.swing.JPanel {
 
     private void Button_LamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_LamMoiActionPerformed
         clearJTextDichVu();
-        //        Button_ThemDichVu.setEnabled(true);
-        //        Button_XoaDichVu.setEnabled(false);
-        //        Button_SuaDichVu.setEnabled(false);
     }//GEN-LAST:event_Button_LamMoiActionPerformed
 
     private void Table_DichVuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Table_DichVuMouseClicked
         ListSelectionModel listTable_DichVu = Table_DichVu.getSelectionModel();
         listTable_DichVu.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        //        Button_ThemDichVu.setEnabled(false);
-        //        Button_XoaDichVu.setEnabled(true);
-        //        Button_SuaDichVu.setEnabled(true);
         int indexTB = Table_DichVu.getSelectedRow();
         if (indexTB < tblDichVu.getRowCount() && indexTB >= 0){
             Text_MaDV.setText(tblDichVu.getValueAt(indexTB, 1).toString());

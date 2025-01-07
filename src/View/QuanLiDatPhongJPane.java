@@ -31,7 +31,6 @@ import java.text.DecimalFormat;
  * @author asus
  */
 public class QuanLiDatPhongJPane extends javax.swing.JPanel {
-//    private ArrayList<LoaiPhong> listKieuPhong;
     private ArrayList<ThongTinPhong> listPhongTrong;
     private ArrayList<KhachHang> listKhachHang;
     private HashMap<String, Integer> listPhongDat;
@@ -95,9 +94,7 @@ public class QuanLiDatPhongJPane extends javax.swing.JPanel {
         tblDanhSachTiLePhuThu.addRow(new Object[]{"Phụ thu khách tối đa", giatri});
 
         
-//        showTableChiTietTTPhong();
         showComboBox_KieuPhong();
-//        showComboBox_KieuGiuong();
         Table_DanhSachPhongDat.setShowHorizontalLines(true);
         Table_DanhSachPhongTrong.setShowHorizontalLines(true);
         Table_TiLePhuThu.setShowHorizontalLines(true);
@@ -129,9 +126,6 @@ public class QuanLiDatPhongJPane extends javax.swing.JPanel {
     
     public void resetTablePhongTrong(){
         try {
-            //            int kieuGiuong = Integer.parseInt(ComboBox_LoaiGiuong.getSelectedItem().toString());
-//            Date ngayNhan = jDateChooser_NgayNhan.getDate();
-//            Date ngayTra = jDateChooser_NgayTra.getDate();
             String kieuphong = ComboBox_KieuPhong.getSelectedItem().toString();
             if (kieuphong.equals("Tất cả"))
                 kieuphong = "";
@@ -158,6 +152,7 @@ public class QuanLiDatPhongJPane extends javax.swing.JPanel {
         Text_TongTien.setText("");
         Text_TienPhuPhi.setText("");
         Text_TongTiLePhuThu.setText("");
+        Text_SoKhachTinhPhuThu.setText("");
         tblDanhSachPhongDat.setRowCount(0);
         ComboBox_KieuPhong.setSelectedItem("Tất cả");
         ComboBox_KieuGiuong.setSelectedItem("Tất cả");
@@ -653,7 +648,7 @@ public class QuanLiDatPhongJPane extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1156, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1155, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -665,7 +660,7 @@ public class QuanLiDatPhongJPane extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 757, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -682,9 +677,6 @@ public class QuanLiDatPhongJPane extends javax.swing.JPanel {
         {
             String kieuPhong = ComboBox_KieuPhong.getSelectedItem().toString();
             try {
-                //            int kieuGiuong = Integer.parseInt(ComboBox_LoaiGiuong.getSelectedItem().toString());
-//            Date ngayNhan = jDateChooser_NgayNhan.getDate();
-//            Date ngayTra = jDateChooser_NgayTra.getDate();
                 String kieuphong = ComboBox_KieuPhong.getSelectedItem().toString();
                 if (kieuphong.equals("Tất cả"))
                     kieuphong = "";
@@ -817,7 +809,6 @@ public class QuanLiDatPhongJPane extends javax.swing.JPanel {
     }//GEN-LAST:event_Button_ThemPhongDatMouseClicked
 
     private void Button_XoaPhongDatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Button_XoaPhongDatMouseClicked
-        // TODO add your handling code here:
         long songayluutru;
         long diff = jDateChooser_NgayTra.getDate().getTime() - jDateChooser_NgayNhan.getDate().getTime();
         TimeUnit time = TimeUnit.DAYS; 
@@ -848,7 +839,6 @@ public class QuanLiDatPhongJPane extends javax.swing.JPanel {
     }//GEN-LAST:event_Button_XoaPhongDatMouseClicked
 
     private void Button_TaoDonDatPhongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Button_TaoDonDatPhongMouseClicked
-        // TODO add your handling code here:
         if (Text_MaKhachHang.getText().equals(""))
         {
             JOptionPane.showMessageDialog(this,"Người dùng chưa chọn khách hàng");
@@ -904,7 +894,6 @@ public class QuanLiDatPhongJPane extends javax.swing.JPanel {
     }//GEN-LAST:event_ComboBox_KieuGiuongActionPerformed
 
     private void ComboBox_KieuPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBox_KieuPhongActionPerformed
-        // TODO add your handling code here:
         ComboBox_KieuGiuong.removeAllItems();
         showComboBox_KieuGiuong();
 
@@ -961,7 +950,7 @@ public class QuanLiDatPhongJPane extends javax.swing.JPanel {
     }//GEN-LAST:event_Button_LamMoiMouseClicked
 
     private void Button_LamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_LamMoiActionPerformed
-        reset();        // TODO add your handling code here:
+        reset();       
     }//GEN-LAST:event_Button_LamMoiActionPerformed
 
     private void Text_SoKhachTinhPhuThuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Text_SoKhachTinhPhuThuActionPerformed

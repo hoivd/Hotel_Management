@@ -477,7 +477,6 @@ public class QuanLiDichVuJPane extends javax.swing.JPanel {
     private void Button_ThemDichVuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_ThemDichVuActionPerformed
         if(new DichVuController().KtraJtextDichVu(Text_TenDV, Text_DonGia)){
             DanhMucDichVu DichVu = new DanhMucDichVu();
-            //DichVu.setMaDV(Integer.parseInt(Text_MaDV.getText()));
             DichVu.setTenDV(Text_TenDV.getText());
             DichVu.setDonGia(Integer.parseInt(Text_DonGia.getText()));
             if(new DanhMucDichVuDAO().ThemTTDichVu(DichVu)){
@@ -485,12 +484,7 @@ public class QuanLiDichVuJPane extends javax.swing.JPanel {
                 listDichVu.add(DichVu);
                 ComboBox_TenDV.addItem(Text_TenDV.getText().toString());
                 clearJTextDichVu();
-                //showResultChiTietDV();
-                //showTableChiTietDV();
-
                 UpdateTable_DichVu();
-//                UpdateComboBox_TenDV();
-
             } else {
                 JOptionPane.showMessageDialog(this, "Không thể thêm.");
             }
@@ -507,7 +501,6 @@ public class QuanLiDichVuJPane extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "Xóa thành công.");
                     tblDichVu.removeRow(indexTB);
                     ComboBox_TenDV.removeItem(DichVu.getTenDV());
-//                    UpdateComboBox_TenDV();
                     clearJTextDichVu();
                 } else {
                     JOptionPane.showMessageDialog(this, "Xóa thất bại.");
@@ -602,37 +595,16 @@ public class QuanLiDichVuJPane extends javax.swing.JPanel {
     
     public void showComboBox_TenDV(){
         ArrayList<DanhMucDichVu> ttTenDV = new DanhMucDichVuDAO().getListTenDV();
-//        if(ttTenDV == null){
-//            ttTenDV = new DanhMucDichVuDAO().getListTenDV();
-//        } 
         for(DanhMucDichVu data : ttTenDV){
             ComboBox_TenDV.addItem(data.getTenDV());
         }
     }
     
-//    public void showResultChiTietDV(){
-//        DanhMucDichVu DichVu = listDichVu.get(listDichVu.size() - 1);
-//        tblDichVu.addRow(new Object[]{ DichVu.getMaDV(), DichVu.getTenDV(), DichVu.getDonGia()});
-//    }
-    
     public void UpdateTable_DichVu(){
         tblDichVu.setRowCount(0);
         showTableChiTietDV();
     }
-//    public void UpdateComboBox_TenDV(){
-//        ComboBox_TenDV.removeAllItems();
-//        showComboBox_TenDV();
-//    }
-//    public void updateThanhTien()
-//    {
-//        DanhMucDichVu d = dsDichVu.get(Text_TenDV.getText());
-//        if (d != null )
-//        {
-//            int thanhtien = d.getDonGia() * (int)Spinner_SoLuong.getValue() ;
-//            Text_ThanhTien.setText(Integer.toString(thanhtien));
-//        }
-//    }
-    
+
     private void Button_InHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_InHoaDonActionPerformed
         String maphg = ComboBox_MaPhg.getSelectedItem().toString();
         HashMap para = new HashMap();
@@ -684,9 +656,7 @@ public class QuanLiDichVuJPane extends javax.swing.JPanel {
 
     private void ComboBox_TenDVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBox_TenDVActionPerformed
         Spinner_SoLuong.setValue(1);
-        getDonGiaDV();
-//        updateThanhTien();
-        
+        getDonGiaDV();        
     }//GEN-LAST:event_ComboBox_TenDVActionPerformed
 
     private void Spinner_SoLuongStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_Spinner_SoLuongStateChanged

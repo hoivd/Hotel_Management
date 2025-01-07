@@ -274,7 +274,6 @@ public class KieuKhachJFrame extends javax.swing.JFrame {
     }
     
     private void Button_SuaKieuKhachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_SuaKieuKhachActionPerformed
-
         if(new KieuKhachController().KtraJtextKieuKhach(Text_MaLoaiKhach, Text_LoaiKhach, Text_TyLePhuThu)){
             int indexTB = Table_KieuKhach.getSelectedRow();
             KieuKhach KKCu = returnTTKieuKhach(indexTB);

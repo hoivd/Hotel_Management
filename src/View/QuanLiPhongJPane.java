@@ -346,11 +346,9 @@ public class QuanLiPhongJPane extends javax.swing.JPanel {
             ttPhong.setKieuGiuong(Integer.parseInt(ComboBox_KieuGiuong.getSelectedItem().toString()));
             ttPhong.setMoTa(Text_MoTa.getText());
             ttPhong.setSoKhachToiDa(Integer.parseInt(Text_SoKhachToiDa.getText()));
-            //ttPhong.setDonGia(Integer.parseInt(Text_GiaPhong.getText()));
             if(new ThongTinPhongDAO().ThemChiTietTTPhong(ttPhong)){
                 JOptionPane.showMessageDialog(this, "Thêm thành công");
                 listChiTietTTPhong.add(ttPhong);
-                //showResult();
                 updateTable();
             }
         }
@@ -417,8 +415,6 @@ public class QuanLiPhongJPane extends javax.swing.JPanel {
         Button_XoaCTTTPhong.setEnabled(false);
         updateTable();
         clearJTextChiTietTTPhong();
-//        ComboBox_KieuPhong.removeAllItems();
-//        showComboBox_KieuPhong();
         showText_GiaPhong(ComboBox_KieuPhong.getSelectedItem().toString(), Integer.parseInt(ComboBox_KieuGiuong.getSelectedItem().toString()));
     }//GEN-LAST:event_Button_LamMoiActionPerformed
 

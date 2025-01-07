@@ -31,7 +31,6 @@ public class ThongTinPhongDAO {
            ps.setString(2, ttPhong.getKieuPhong());
            ps.setInt(3, ttPhong.getKieuGiuong());
            ps.setString(4, ttPhong.getMoTa());
-//           ps.setInt(5, ttPhong.getDonGia());
            return ps.executeUpdate() > 0;
        } catch (Exception e) {
            e.printStackTrace();
@@ -43,7 +42,6 @@ public class ThongTinPhongDAO {
         String sql = "DELETE FROM PHONG WHERE MAPHG = ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            System.out.println(ttPhong.getMaPhg());
             ps.setString(1, ttPhong.getMaPhg());
             return ps.executeUpdate() > 0;
         } catch (Exception e) {

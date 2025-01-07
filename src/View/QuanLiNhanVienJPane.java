@@ -26,19 +26,15 @@ import net.sf.jasperreports.view.JasperViewer;
  */
 public class QuanLiNhanVienJPane extends javax.swing.JPanel {
     private ArrayList<NhanVien> listNhanVien;
-//    static int curr_MaNV;
     Date date = new Date();
     
     DefaultTableModel tblNhanVien;
     public QuanLiNhanVienJPane() {
         initComponents();
         NhanVienDAO nvDAO = new NhanVienDAO();
-//        curr_MaNV = nvDAO.getCurrentMaNV();
-//        Text_MaNhanVien.setText(Integer.toString(curr_MaNV));
         listNhanVien = nvDAO.getListNhanVien();
         tblNhanVien = (DefaultTableModel) Table_NhanVien.getModel();
-        tblNhanVien.setColumnIdentifiers(new Object[]{"STT","Mã nhân viên", "Tên nhân viên", "CMND/CCCD", "Ngày sinh", 
-            "Số điện thoại", "Giới tính", "Ngày vào làm", "Chức vụ"});
+        tblNhanVien.setColumnIdentifiers(new Object[]{"STT","Mã nhân viên", "Tên nhân viên", "CMND/CCCD", "Ngày sinh", "Số điện thoại", "Giới tính", "Ngày vào làm", "Chức vụ"});
         showTable();
         Button_XoaNhanVien.setEnabled(false);
         Button_SuaNhanVien.setEnabled(false);
@@ -380,7 +376,6 @@ public class QuanLiNhanVienJPane extends javax.swing.JPanel {
     private void Button_ThemNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_ThemNhanVienActionPerformed
         if(new NhanVienController().KtraJTextNhanVien(Text_HoTen, Text_CCCD, JDateChooser_NgaySinh, Text_SDT, JDateChooser_NgayVaoLam)){
             NhanVien nv = new NhanVien();
-    //        nv.setMaNV(Integer.parseInt(Text_MaNhanVien.getText()));
             nv.setTenNV(Text_HoTen.getText());
             nv.setCCCD(Text_CCCD.getText());
             nv.setNgaySinh(JDateChooser_NgaySinh.getDate());
@@ -389,13 +384,7 @@ public class QuanLiNhanVienJPane extends javax.swing.JPanel {
             nv.setNgayVaoLam(JDateChooser_NgayVaoLam.getDate());
             nv.setChucVu(ComboBox_ChucVu.getSelectedItem().toString());
               if(new NhanVienDAO().ThemNhanVien(nv)){
-                JOptionPane.showMessageDialog(this, "Thêm thành công.");
-    //            NhanVienDAO nvDAO = new NhanVienDAO();
-    //            curr_MaNV = nvDAO.getCurrentMaNV();
-    //            listNhanVien = nvDAO.getListNhanVien();                        
-    //            showResult();
-    //            System.out.println(JDateChooser_NgaySinh.getDate());
-    //            System.out.println(JDateChooser_NgayVaoLam.getDate());             
+                JOptionPane.showMessageDialog(this, "Thêm thành công.");           
                 resetJTextNhanVien();
                 updateTable();
             } else {
@@ -441,15 +430,7 @@ public class QuanLiNhanVienJPane extends javax.swing.JPanel {
         } else {
             JOptionPane.showMessageDialog(this, "Xóa thất bại");
         }
-//        NhanVienDAO nvDAO = new NhanVienDAO();
-//        listNhanVien = nvDAO.getListNhanVien();
-//        for(NhanVien nv : listNhanVien){
-//            if(nv.getMaNV() ==  Integer.parseInt(Text_MaNhanVien.getText())){
-//                nvDAO.XoaNhanVien(nv);
-//                JOptionPane.showMessageDialog(this, "Xóa thành công.");
-//                break;
-//            } else { JOptionPane.showMessageDialog(this, "Xóa thất bại");}
-//        }
+        
         updateTable();
         resetJTextNhanVien();
     }//GEN-LAST:event_Button_XoaNhanVienActionPerformed
@@ -566,7 +547,6 @@ public class QuanLiNhanVienJPane extends javax.swing.JPanel {
         nv.setTenNV(Text_HoTen.getText());
         nv.setCCCD(Text_CCCD.getText());
         nv.setSDT(Text_SDT.getText());
-//        nv.setChucVu(ComboBox_ChucVu.getSelectedItem().toString());
         showKetQuaTimKiemNV(nv);
     }//GEN-LAST:event_Button_TimKiemNhanVienActionPerformed
 
@@ -574,7 +554,6 @@ public class QuanLiNhanVienJPane extends javax.swing.JPanel {
         new TaoTaiKhoanJFrame();
     }//GEN-LAST:event_Button_TaoTKActionPerformed
     public void resetJTextNhanVien(){
-//        Text_MaNhanVien.setText(Integer.toString(curr_MaNV));
         Text_MaNhanVien.setText("");
         Text_HoTen.setText("");
         Text_CCCD.setText("");

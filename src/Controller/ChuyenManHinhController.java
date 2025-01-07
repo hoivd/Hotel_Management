@@ -50,9 +50,6 @@ public class ChuyenManHinhController {
         Root.add(new TrangChuJPane());
         Root.validate();
         Root.repaint();        
-//        Root.revalidate();
-
-
     }
     
     public void setEvent(List<DanhMuc> listItem){
@@ -68,7 +65,6 @@ public class ChuyenManHinhController {
     class LabelEvent implements MouseListener{
         
         private JPanel node;
-        
         private String kind;
         private JPanel jpnItem;
         private JLabel jlbItem;
@@ -125,11 +121,8 @@ public class ChuyenManHinhController {
             Root.removeAll();
             Root.repaint();
             Root.revalidate();
-            
-            
             Root.setLayout(new BorderLayout());
             Root.add(node);
-//            Root.validate();
             Root.repaint();            
             Root.revalidate();
         }
@@ -145,7 +138,6 @@ public class ChuyenManHinhController {
                     item.getJpn().setBackground(new Color(102,102,102));
                 }   
             }
-
         }
 
         @Override

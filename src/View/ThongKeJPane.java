@@ -6,6 +6,7 @@
 package View;
 
 import DAO.DataBaseConnection;
+import Model.KhachHang;
 import com.toedter.calendar.JMonthChooser;
 import com.toedter.calendar.JYearChooser;
 import java.awt.Button;
@@ -16,7 +17,11 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.InputStream;
 import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -39,6 +44,9 @@ import net.sf.jasperreports.view.JasperViewer;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+import java.time.LocalDate;
+
 
 
 /**
@@ -50,10 +58,59 @@ public class ThongKeJPane extends javax.swing.JPanel {
     /**
      * Creates new form ThongKeJPane
      */
+    DefaultTableModel tblHoaDon;
     public ThongKeJPane() {
         initComponents();
+        tblHoaDon = (DefaultTableModel) Table_HoaDon.getModel();
+        showTable();
+        Table_HoaDon.setShowHorizontalLines(true);
+        Table_HoaDon.setDefaultEditor(Object.class, null);            
     }
 
+    public void showTable(){
+        tblHoaDon.setRowCount(0);
+        Connection con = DataBaseConnection.getConnection();
+        int MaThanhToan;
+        int MaNV;
+        int MaKH;
+        String MaPhg;
+        String TenNV;
+        String TenKH;
+        java.sql.Date NgayLap;
+        String sql = "SELECT T.MATHANHTOAN, T.MANV, T.NGAYLAP,  P.MAKH, C.MAPHG, N.TENNV, K.TENKH\n" +
+                    "FROM THANHTOAN T\n" +
+                    "INNER JOIN \n" +
+                        "PHIEUDATPHONG P\n" +
+                    "ON T.MADATPHONG = P.MADATPHONG\n" +
+                    "INNER JOIN\n" +
+                        "CHITIETDATPHONG C\n" +
+                    "ON P.MADATPHONG = C.MADATPHONG\n" +
+                    "INNER JOIN\n" + 
+                        "NHANVIEN N\n" +
+                    "ON N.MANV = T.MANV\n" +   
+                    "INNER JOIN\n" + 
+                        "KHACHHANG K\n" +
+                    "ON P.MAKH = K.MAKH";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            int i = 1;
+            while(rs.next()){
+                MaThanhToan = rs.getInt("MATHANHTOAN");
+                MaNV = rs.getInt("MANV");
+                MaKH = rs.getInt("MAKH");
+                MaPhg = rs.getString("MAPHG");
+                TenNV = rs.getString("TENNV");
+                TenKH = rs.getString("TENKH");
+                NgayLap = rs.getDate("NGAYLAP");
+                if (MaThanhToan != 0)
+                    tblHoaDon.addRow(new Object[]{i++, MaThanhToan, NgayLap, MaNV, TenNV, MaKH, TenKH, MaPhg});
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -67,6 +124,8 @@ public class ThongKeJPane extends javax.swing.JPanel {
         Button_TKSLDatDV = new javax.swing.JButton();
         Button_TKDoanhThuThang = new javax.swing.JButton();
         Button_HoaDonThanhToan = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Table_HoaDon = new javax.swing.JTable();
 
         jPanel1.setToolTipText("");
 
@@ -106,17 +165,35 @@ public class ThongKeJPane extends javax.swing.JPanel {
             }
         });
 
+        Table_HoaDon.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "STT", "Mã thanh toán", "Ngày lập", "Mã nhân viên", "Tên nhân viên", "Mã khách hàng", "Tên khách hàng", "Mã Phòng"
+            }
+        ));
+        jScrollPane1.setViewportView(Table_HoaDon);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(146, 146, 146)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Button_HoaDonThanhToan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Button_TKSLDatDV, javax.swing.GroupLayout.DEFAULT_SIZE, 806, Short.MAX_VALUE)
-                    .addComponent(Button_TKDoanhThuThang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(662, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(146, 146, 146)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Button_HoaDonThanhToan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Button_TKSLDatDV, javax.swing.GroupLayout.DEFAULT_SIZE, 806, Short.MAX_VALUE)
+                            .addComponent(Button_TKDoanhThuThang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(109, 109, 109)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 895, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(610, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,7 +204,9 @@ public class ThongKeJPane extends javax.swing.JPanel {
                 .addComponent(Button_TKDoanhThuThang, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(Button_HoaDonThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(313, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -146,6 +225,7 @@ public class ThongKeJPane extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void Button_HoaDonThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_HoaDonThanhToanActionPerformed
         BigDecimal matt;
         HashMap para = new HashMap();
@@ -281,6 +361,8 @@ public class ThongKeJPane extends javax.swing.JPanel {
     private javax.swing.JButton Button_HoaDonThanhToan;
     private javax.swing.JButton Button_TKDoanhThuThang;
     private javax.swing.JButton Button_TKSLDatDV;
+    private javax.swing.JTable Table_HoaDon;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

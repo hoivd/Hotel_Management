@@ -10,5 +10,4 @@ package DAO;
  * @author asus
  */
 public class DichVuPhongDAO {
-    
 }

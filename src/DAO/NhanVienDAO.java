@@ -37,7 +37,6 @@ public class NhanVienDAO {
         String sql = "INSERT INTO NhanVien(TenNV, CCCD, NgaySinh, SDT, GioiTinh, NgayVL, ChucVu) VALUES(?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-//            ps.setInt(1, nv.getMaNV());
             ps.setString(1, nv.getTenNV());
             ps.setString(2, nv.getCCCD());
             ps.setDate(3, new Date(nv.getNgaySinh().getTime()));
@@ -117,7 +116,6 @@ public class NhanVienDAO {
             ps.setString(1, "%" + nv.getTenNV().toUpperCase() + "%");
             ps.setString(2, "%" + nv.getCCCD().toUpperCase() + "%");
             ps.setString(3, "%" + nv.getSDT().toUpperCase() + "%");
-//            ps.setString(4, "%" + nv.getChucVu());
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 NhanVien data = new NhanVien();

@@ -53,7 +53,6 @@ import java.util.logging.Logger;
  * @author asus
  */
 public class TraPhongJPane extends javax.swing.JPanel {
-//    private ArrayList<LoaiPhong> listKieuPhong;
     private ArrayList<ThongTinPhieuDatPhong> listPhieuDatPhong;
     private DefaultTableModel tblPhieuDatPhong;
     public TraPhongJPane() 
@@ -410,24 +409,10 @@ public class TraPhongJPane extends javax.swing.JPanel {
         ListSelectionModel listTable_KhachHang = Table_PhieuDatPhong.getSelectionModel();
         listTable_KhachHang.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         int indexTB = Table_PhieuDatPhong.getSelectedRow();
-//        if (indexTB < tblPhieuDatPhong.getRowCount() && indexTB >= 0){
-//            Text_MaDatPhong.setText(tblPhieuDatPhong.getValueAt(indexTB, 0).toString());
-//            Text_TenKH.setText(tblPhieuDatPhong.getValueAt(indexTB, 1).toString());
-//            Text_CCCD.setText(tblPhieuDatPhong.getValueAt(indexTB, 2).toString());
-//            Text_SDT.setText(tblPhieuDatPhong.getValueAt(indexTB, 3).toString());
-//            try {
-//                jDateChooser_NgayDat.setDate(new SimpleDateFormat("dd-MM-yyyy").parse(tblPhieuDatPhong.getValueAt(indexTB, 4).toString()));
-//                jDateChooser_NgayNhan.setDate(new SimpleDateFormat("dd-MM-yyyy").parse(tblPhieuDatPhong.getValueAt(indexTB, 5).toString()));
-//                jDateChooser_NgayTra.setDate(new SimpleDateFormat("dd-MM-yyyy").parse(tblPhieuDatPhong.getValueAt(indexTB, 6).toString()));
-//            } catch (ParseException ex) {
-//                Logger.getLogger(TraPhongJPane.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        }
         this.loadPhieuDatPhongInfo(Integer.parseInt(tblPhieuDatPhong.getValueAt(indexTB, 0).toString()));
     }//GEN-LAST:event_Table_PhieuDatPhongMouseClicked
 
     private void Button_CheckOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_CheckOutActionPerformed
-        // TODO add your handling code here:
         if (new CheckInController().KtraTextCheckIn(Text_MaDatPhong, Text_TenKH, Text_CCCD, Text_SDT, jDateChooser_NgayDat, jDateChooser_NgayNhan, jDateChooser_NgayTra))
         {
             if (this.XacNhanThanhToan())
@@ -439,7 +424,6 @@ public class TraPhongJPane extends javax.swing.JPanel {
     }//GEN-LAST:event_Button_CheckOutActionPerformed
 
     private void Button_TimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_TimKiemActionPerformed
-        // TODO add your handling code here:
         ChonPhongLuuTruJPanel plt = new ChonPhongLuuTruJPanel();
         int result = JOptionPane.showConfirmDialog(null, plt, "Chọn phòng đang lưu trú", JOptionPane.OK_CANCEL_OPTION);
         if (result == JOptionPane.OK_OPTION)
@@ -482,12 +466,7 @@ public class TraPhongJPane extends javax.swing.JPanel {
             }
             
             this.themThanhToan(Integer.parseInt(Text_MaDatPhong.getText()),panel.getTienKhachTra() , panel.getHinhThucThanhToan());
-            
-            
             new PhieuDatPhongDAO().XacNhanThanhToan(Integer.parseInt(Text_MaDatPhong.getText()));
-            
-            
-
             clearText();
             return true;
         }

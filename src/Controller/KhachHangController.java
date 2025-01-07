@@ -18,10 +18,6 @@ public class KhachHangController {
             JOptionPane.showMessageDialog(null, "Vui lòng nhập đủ thông tin.");
             return false;
         }
-//        if(!isWordOrNot(Hoten.getText())){
-//            JOptionPane.showMessageDialog(null, "Họ tên không hợp lệ. Tên không chứa số hoặc kí tự.");
-//            return false;
-//        }
         if(!isNumberOrNot(CCCD.getText())){
             JOptionPane.showMessageDialog(null, "CMND/CCCD phải là số. Vui lòng nhập lại.");
             return false;
@@ -41,9 +37,4 @@ public class KhachHangController {
         }
         return true;
     }
-    
-//    private boolean isWordOrNot(String input){
-//        return Pattern.matches("[a-zA-Z]+ ", input);
-//    }
-        
 }

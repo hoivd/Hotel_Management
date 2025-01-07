@@ -22,6 +22,7 @@ import java.sql.Types;
  */
 public class PhieuDatPhongDAO {
     Connection con = DataBaseConnection.getConnection();
+    
     public int getCurrentMaDatPhong(){
         int result = -1;
         String sql = "SELECT MADATPHONG FROM PHIEUDATPHONG ORDER BY MADATPHONG DESC FETCH FIRST 1 ROW ONLY";
@@ -38,6 +39,7 @@ public class PhieuDatPhongDAO {
         }
         return result+1;
     }
+    
     public boolean ThemPhieuDatPhong(PhieuDatPhong pdp){      
         String sql = "INSERT INTO PHIEUDATPHONG(MADATPHONG, MAKH, NGAYNHAN, NGAYTRA, TTNHANPHONG, MANV,  TIENTRATRUOC, PHUPHI) VALUES(?,?,?,?,0,1,?, ?)";
         try {
@@ -54,6 +56,7 @@ public class PhieuDatPhongDAO {
         }
         return false;
     }
+    
     public boolean ThemChiTietDatPhong(int MaDatPhong, ArrayList<String> ListMaPHG){
         for (String maPHG : ListMaPHG)
         {
@@ -71,6 +74,7 @@ public class PhieuDatPhongDAO {
         }
         return true;        
     }
+    
     public boolean TaoPhieuDatPhong(PhieuDatPhong pdp, ArrayList<String> ListMaPHG) throws SQLException
     {
         Connection con = DataBaseConnection.getConnection();
@@ -83,6 +87,7 @@ public class PhieuDatPhongDAO {
         }
         return false;
     }
+    
     public boolean XacNhanNhanPhong(int mapdp){      
         String sql = "CALL XacNhanNhanPhong(?)";
         try {
@@ -94,6 +99,7 @@ public class PhieuDatPhongDAO {
         }
         return false;
     }
+    
     public boolean XacNhanThanhToan(int mapdp){      
         String sql = "CALL XacNhanThanhToan(?)";
         try {
@@ -105,6 +111,7 @@ public class PhieuDatPhongDAO {
         }
         return false;
     }
+    
     public boolean HuyDatPhong(int mapdp){      
         String sql = "CALL HUYPHIEUDATPHONG(?)";
         try {
@@ -151,6 +158,7 @@ public class PhieuDatPhongDAO {
         return dsphong;
 
     }
+    
     public PhieuDatPhong getThongTinPhieuDatPhong(int mapdp)
     {
         String sql = "SELECT MADATPHONG, MAKH, NGAYDAT, NGAYNHAN, NGAYTRA, TIENPHONG, TIENTRATRUOC, TIENDV, PHUPHI FROM PHIEUDATPHONG WHERE MADATPHONG = ?";
@@ -180,6 +188,7 @@ public class PhieuDatPhongDAO {
         return pdp;
 
     }
+    
     public int getMaDatPhongFromMaPHG(String maphg)
     {
         String sql = "SELECT PHIEUDATPHONG.MADATPHONG AS MDP FROM PHIEUDATPHONG, CHITIETDATPHONG WHERE TTNHANPHONG = 1 AND PHIEUDATPHONG.MADATPHONG = CHITIETDATPHONG.MADATPHONG AND MAPHG = ?";
@@ -195,7 +204,5 @@ public class PhieuDatPhongDAO {
             e.printStackTrace();
         }
         return -1;
-
     }
-
 }

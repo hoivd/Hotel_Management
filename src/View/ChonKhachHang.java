@@ -27,12 +27,10 @@ public class ChonKhachHang extends javax.swing.JPanel {
     private ArrayList<KhachHang> listKhachHang;
     private ArrayList<KieuKhach> listKieuKhach;
     DefaultTableModel tblKhachHang;
-//    static int curr_MaKH;
+    
     public ChonKhachHang() {       
         initComponents();
         KhachHangDAO khDAO = new KhachHangDAO();
-//        curr_MaKH =khDAO.getCurrentMaKH();
-        //Text_MaKhachHang.setText(Integer.toString(curr_MaKH));
         listKhachHang = khDAO.getListKhachHang();
         tblKhachHang = (DefaultTableModel) Table_KhachHang.getModel();
         tblKhachHang.setColumnIdentifiers(new Object[]{"STT","Mã khách hàng", "Tên khách hàng", "Giới tính", "CMND/CCCD", "SDT", "Loại khách", "Tỷ lệ"});
@@ -458,26 +456,7 @@ public class ChonKhachHang extends javax.swing.JPanel {
     }//GEN-LAST:event_Button_LamMoiActionPerformed
 
     private void Button_ThemKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_ThemKhachHangActionPerformed
-//        if(new KhachHangController().KtraJtextKhachHang(Text_HoTen, Text_CCCD, Text_SDT)){
-//            KhachHang kh = new KhachHang();
-//            kh.setTenKH(Text_HoTen.getText());
-//            kh.setCCCD(Text_CCCD.getText());
-//            kh.setGioiTinh(ComboBox_GioiTinh.getSelectedItem().toString());
-//            kh.set
-//            kh.setSDT(Text_SDT.getText());
-//            KhachHangDAO khDAO = new KhachHangDAO();
-//            if(khDAO.ThemKhachHang(kh)){
-//                JOptionPane.showMessageDialog(this, "Thêm thành công.");
-//                listKhachHang = khDAO.getListKhachHang();
-//                //            curr_MaKH = khDAO.getCurrentMaKH();
-//                updateTable();
-//                clearJTextKhachHang();
-//                //            showResult();
-//            } else {
-//                JOptionPane.showMessageDialog(this, "Thêm thất bại.");
-//            }
-//        }
-                if(new KhachHangController().KtraJtextKhachHang(Text_HoTen, Text_CCCD, Text_SDT)){
+        if(new KhachHangController().KtraJtextKhachHang(Text_HoTen, Text_CCCD, Text_SDT)){
             KhachHang kh = new KhachHang();
             kh.setTenKH(Text_HoTen.getText());
             kh.setCCCD(Text_CCCD.getText());
@@ -490,41 +469,15 @@ public class ChonKhachHang extends javax.swing.JPanel {
             if(khDAO.ThemKhachHang(kh)){
                 JOptionPane.showMessageDialog(this, "Thêm thành công.");
                 listKhachHang = khDAO.getListKhachHang();
-    //            curr_MaKH = khDAO.getCurrentMaKH();
                 updateTable();
                 clearJTextKhachHang();
-    //            showResult();
             } else {
                 JOptionPane.showMessageDialog(this, "Thêm thất bại.");
             }
         }
     }//GEN-LAST:event_Button_ThemKhachHangActionPerformed
 
-    private void Button_TimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_TimKiemActionPerformed
-        KhachHang kh = new KhachHang();
-        kh.setTenKH(Text_HoTen.getText());
-        kh.setCCCD(Text_CCCD.getText());
-        kh.setSDT(Text_SDT.getText());
-        kh.setGioiTinh(ComboBox_GioiTinh.getSelectedItem().toString());
-        String LoaiKhach = ComboBox_LoaiKhach.getSelectedItem().toString();
-        String MaLoaiKhach = new KieuKhachDAO().getMaLoaiKhachByTenLK(LoaiKhach);
-        kh.setMaLoaiKhach(MaLoaiKhach);
-        showResultTimKiem(kh);
-    }//GEN-LAST:event_Button_TimKiemActionPerformed
-
-    private void Text_CCCDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Text_CCCDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Text_CCCDActionPerformed
-
-    private void Text_HoTenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Text_HoTenActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Text_HoTenActionPerformed
-
-    private void ComboBox_LoaiKhachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBox_LoaiKhachActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ComboBox_LoaiKhachActionPerformed
-
-    public KhachHang returnKhachHang(int index){       
+        public KhachHang returnKhachHang(int index){       
         int MaKH = Integer.parseInt(tblKhachHang.getValueAt(index, 1).toString());
         String HoTen = tblKhachHang.getValueAt(index, 2).toString();
         String GioiTinh = tblKhachHang.getValueAt(index, 3).toString();
@@ -556,7 +509,6 @@ public class ChonKhachHang extends javax.swing.JPanel {
     }
          
     public void clearJTextKhachHang(){
-//        Text_MaKhachHang.setText(Integer.toString(curr_MaKH));
         Text_MaKhachHang.setText("");
         Text_HoTen.setText("");
         ComboBox_GioiTinh.setSelectedItem("Nam");
@@ -566,11 +518,35 @@ public class ChonKhachHang extends javax.swing.JPanel {
         ComboBox_LoaiKhach.setSelectedItem(-1);
         Text_TyLePhuThu.setText("");
     }
+    
     public void showResult(){
-        //int i = 1;
         KhachHang kh = listKhachHang.get(listKhachHang.size() - 1);
         tblKhachHang.addRow(new Object[]{kh.getMaKH(), kh.getTenKH(), kh.getGioiTinh(), kh.getCCCD(), kh.getSDT(), kh.getTenLoaiKhach(),kh.getTyLePhuThu()});
     }
+    
+    private void Button_TimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_TimKiemActionPerformed
+        KhachHang kh = new KhachHang();
+        kh.setTenKH(Text_HoTen.getText());
+        kh.setCCCD(Text_CCCD.getText());
+        kh.setSDT(Text_SDT.getText());
+        kh.setGioiTinh(ComboBox_GioiTinh.getSelectedItem().toString());
+        String LoaiKhach = ComboBox_LoaiKhach.getSelectedItem().toString();
+        String MaLoaiKhach = new KieuKhachDAO().getMaLoaiKhachByTenLK(LoaiKhach);
+        kh.setMaLoaiKhach(MaLoaiKhach);
+        showResultTimKiem(kh);
+    }//GEN-LAST:event_Button_TimKiemActionPerformed
+
+    private void Text_CCCDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Text_CCCDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Text_CCCDActionPerformed
+
+    private void Text_HoTenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Text_HoTenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Text_HoTenActionPerformed
+
+    private void ComboBox_LoaiKhachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBox_LoaiKhachActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ComboBox_LoaiKhachActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Button_LamMoi;

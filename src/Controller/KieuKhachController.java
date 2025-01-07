@@ -26,16 +26,7 @@ public class KieuKhachController {
         return true;
     }
     
-    
-//    private boolean isNumberOrNot(String input) {
-//        try {
-//            Long.parseLong(input);
-//        } catch (NumberFormatException e) {
-//            return false;
-//        }
-//        return true;
-//    }
-        private boolean isNumberOrNot(String input) {
+    private boolean isNumberOrNot(String input) {
         return input.matches("-?\\d+(\\.\\d+)?");
     }
 }
